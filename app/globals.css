@@ -1,0 +1,108 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Tipografia da marca ─────────────────────────────────────── */
+
+@font-face {
+  font-family: "Neue Gravica";
+  src: url("/fonts/NeueGravica-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Gravica";
+  src: url("/fonts/NeueGravica-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Neue Gravica";
+  src: url("/fonts/NeueGravica-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* A família não possui peso Bold reto. ExtraBold ocupa o papel de
+   título definido no manual. */
+@font-face {
+  font-family: "Neue Gravica";
+  src: url("/fonts/NeueGravica-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Paleta ──────────────────────────────────────────────────── */
+
+/* Valores em tripla RGB (sem vírgula) para que o Tailwind consiga aplicar
+   modificadores de opacidade como text-branco/85 ou border-branco/20.
+   Equivalências em hexadecimal, conforme o manual da marca:
+     preto #161614 · branco #ffffff
+     azul escuro #1b456a · azul médio #4d82a3 · azul claro #92b2c8 */
+:root {
+  --vt-preto: 22 22 20;
+  --vt-branco: 255 255 255;
+  --vt-azul-escuro: 27 69 106;
+  --vt-azul-medio: 77 130 163;
+  --vt-azul-claro: 146 178 200;
+  --vt-fonte: "Neue Gravica";
+}
+
+/* ── Base ────────────────────────────────────────────────────── */
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: rgb(var(--vt-preto));
+  color: rgb(var(--vt-branco));
+  font-family: var(--vt-fonte), system-ui, sans-serif;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: rgb(var(--vt-azul-claro));
+  color: rgb(var(--vt-preto));
+}
+
+/* Foco visível em toda a página, usando o azul da paleta */
+:focus-visible {
+  outline: 2px solid rgb(var(--vt-azul-claro));
+  outline-offset: 2px;
+}
+
+/* ── Entrada discreta ────────────────────────────────────────── */
+
+@keyframes vt-surge {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.vt-surge {
+  animation: vt-surge 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
