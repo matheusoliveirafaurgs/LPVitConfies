@@ -2,6 +2,7 @@ import Image from "next/image";
 import Grafismo from "@/components/Grafismo";
 import PreviaAta from "@/components/PreviaAta";
 import FormularioCadastro from "@/components/FormularioCadastro";
+import BotoesFlutuantes from "@/components/BotoesFlutuantes";
 
 export default function Pagina() {
   return (
@@ -20,7 +21,7 @@ export default function Pagina() {
             width={491}
             height={153}
             priority
-            className="h-10 w-auto sm:h-12"
+            className="h-20 w-auto sm:h-24"
           />
         </header>
 
@@ -32,7 +33,7 @@ export default function Pagina() {
               9º Congresso Nacional do CONFIES
             </p>
 
-            <h1 className="mt-5 text-[2.125rem] font-extrabold leading-[1.05] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="mt-5 text-[1.75rem] font-extrabold leading-[1.05] tracking-tight sm:text-4xl lg:text-[2.75rem]">
               Grave a reunião.
               <br />
               Receba a ata.
@@ -69,21 +70,11 @@ export default function Pagina() {
         <footer className="border-t border-branco/12 py-8 text-sm font-light text-branco/60">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-col gap-1 sm:flex-row sm:gap-6">
-              <a
-                href="mailto:contato@vitora.com.br"
-                className="transition-colors hover:text-azul-claro"
-              >
-                contato@vitora.com.br
-              </a>
-              <a
-                href="tel:+555133086918"
-                className="transition-colors hover:text-azul-claro"
-              >
-                +55 (51) 3308-6918
-              </a>
+              <a href="mailto:contato@vitora.com.br" className="transition-colors hover:text-azul-claro">contato@vitora.com.br</a>
+              <a href="tel:+555133086918" className="transition-colors hover:text-azul-claro">+55 (51) 3308-6918</a>      
             </div>
 
-            <a
+              <a
               href="https://www.faurgs.com.br/politicas/seguranca-da-informacao/"
               target="_blank"
               rel="noopener noreferrer"
@@ -98,6 +89,7 @@ export default function Pagina() {
           </p>
         </footer>
       </div>
+      <BotoesFlutuantes />
     </div>
   );
 }

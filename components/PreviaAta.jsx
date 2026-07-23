@@ -1,5 +1,5 @@
 /**
- * Prévia de uma ata gerada pelo Vit.
+ * Prévia de uma ata gerada pelo Vit, apresentada como documento em papel.
  *
  * As três seções refletem a estrutura real da saída do agente:
  * participantes, assuntos tratados e encaminhamentos.
@@ -31,8 +31,8 @@ const ATA = {
 
 function Secao({ titulo, children }) {
   return (
-    <div className="border-t border-azul-escuro/60 pt-4">
-      <h3 className="text-[0.6875rem] font-light uppercase tracking-[0.18em] text-azul-claro">
+    <div className="border-t border-preto/10 pt-4">
+      <h3 className="text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-azul-escuro">
         {titulo}
       </h3>
       <div className="mt-2">{children}</div>
@@ -42,52 +42,65 @@ function Secao({ titulo, children }) {
 
 export default function PreviaAta() {
   return (
-    <figure className="rounded-sm border border-azul-escuro bg-azul-escuro/25 p-6 sm:p-7">
-      <figcaption className="sr-only">
-        Exemplo de ata gerada pelo Vit a partir do áudio de uma reunião
-      </figcaption>
+    <div className="relative">
+      {/* Folhas empilhadas ao fundo, sugerindo um documento impresso */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-2 -bottom-2 top-2 rounded-[2px] bg-branco/20"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-x-1 -bottom-1 top-1 rounded-[2px] bg-branco/40"
+      />
 
-      <p className="text-[0.6875rem] font-light uppercase tracking-[0.18em] text-azul-medio">
-        Exemplo de saída
-      </p>
-      <p className="mt-2 text-lg font-semibold leading-snug sm:text-xl">
-        {ATA.titulo}
-      </p>
+      <figure className="relative rounded-[2px] bg-branco px-7 py-8 text-preto shadow-2xl shadow-preto/50 sm:px-9 sm:py-10">
+        <figcaption className="sr-only">
+          Exemplo de ata gerada pelo Vit a partir do áudio de uma reunião
+        </figcaption>
 
-      <div className="mt-6 space-y-5">
-        <Secao titulo="Participantes">
-          <p className="text-sm leading-relaxed text-branco/90">
-            {ATA.participantes.join(" · ")}
-          </p>
-        </Secao>
+        <p className="text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-azul-medio">
+          Exemplo de ata
+        </p>
 
-        <Secao titulo="Assuntos tratados">
-          <ul className="space-y-1.5">
-            {ATA.assuntos.map((assunto) => (
-              <li
-                key={assunto}
-                className="text-sm leading-relaxed text-branco/90"
-              >
-                {assunto}
-              </li>
-            ))}
-          </ul>
-        </Secao>
+        <h2 className="mt-3 text-xl font-extrabold leading-snug sm:text-2xl">
+          {ATA.titulo}
+        </h2>
 
-        <Secao titulo="Encaminhamentos">
-          <ul className="space-y-3">
-            {ATA.encaminhamentos.map((item) => (
-              <li key={item.acao} className="text-sm leading-relaxed">
-                <span className="text-branco/90">{item.acao}</span>
-                <span className="mt-0.5 block text-[0.8125rem] font-light text-azul-claro">
-                  {item.responsavel}
-                  {item.prazo ? ` · até ${item.prazo}` : ""}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </Secao>
-      </div>
-    </figure>
+        <div className="mt-7 space-y-5">
+          <Secao titulo="Participantes">
+            <p className="text-sm leading-relaxed text-preto/80">
+              {ATA.participantes.join(" · ")}
+            </p>
+          </Secao>
+
+          <Secao titulo="Assuntos tratados">
+            <ul className="space-y-1.5">
+              {ATA.assuntos.map((assunto) => (
+                <li
+                  key={assunto}
+                  className="text-sm leading-relaxed text-preto/80"
+                >
+                  {assunto}
+                </li>
+              ))}
+            </ul>
+          </Secao>
+
+          <Secao titulo="Encaminhamentos">
+            <ul className="space-y-3">
+              {ATA.encaminhamentos.map((item) => (
+                <li key={item.acao} className="text-sm leading-relaxed">
+                  <span className="font-semibold text-preto">{item.acao}</span>
+                  <span className="mt-0.5 block text-[0.8125rem] font-light text-preto/55">
+                    {item.responsavel}
+                    {item.prazo ? ` · até ${item.prazo}` : ""}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </Secao>
+        </div>
+      </figure>
+    </div>
   );
 }
