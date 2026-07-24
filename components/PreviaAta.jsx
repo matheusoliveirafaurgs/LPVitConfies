@@ -1,15 +1,26 @@
+import Image from "next/image";
+
 /**
- * Prévia de uma ata gerada pelo Vit, apresentada como documento em papel.
+ * Prévia de uma ata gerada pela Vit, apresentada como documento em papel.
  *
- * As três seções refletem a estrutura real da saída do agente:
+ * O cabeçalho segue o padrão de sistemas de ata reais: marca + tipo de
+ * documento à esquerda, timestamp de geração à direita.
+ *
+ * As três seções abaixo refletem a estrutura real da saída do agente:
  * participantes, assuntos tratados e encaminhamentos.
  *
- * O último encaminhamento aparece sem prazo de propósito: quando a reunião
- * não define uma data, o Vit deixa o campo de fora em vez de inventar.
+ * Participantes listam só quem foi identificado falando na gravação — como
+ * o Vit trabalha a partir de áudio, não de lista de convocados, não há como
+ * saber quem faltou. Registrar ausência seria inventar um dado que o áudio
+ * não contém, o mesmo princípio que já vale para o prazo: quando a reunião
+ * não define algo, o Vit deixa de fora em vez de supor.
+ *
+ * O último encaminhamento aparece sem prazo de propósito, pelo mesmo motivo.
  */
 
 const ATA = {
   titulo: "Comitê de Projetos — reunião ordinária",
+  geradaEm: "24/07/2026 · 09:42",
   participantes: ["Ana Ribeiro", "Carlos Menezes", "Júlia Prado"],
   assuntos: [
     "Prestação de contas do projeto XPTO",
@@ -55,10 +66,36 @@ export default function PreviaAta() {
 
       <figure className="relative rounded-[2px] bg-branco px-7 py-8 text-preto shadow-2xl shadow-preto/50 sm:px-9 sm:py-10">
         <figcaption className="sr-only">
-          Exemplo de ata gerada pelo Vit a partir do áudio de uma reunião
+          Exemplo de ata gerada pela Vit a partir do áudio de uma reunião
         </figcaption>
 
-        <p className="text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-azul-medio">
+        {/* Cabeçalho — marca + tipo de documento à esquerda, timestamp à direita */}
+        <div className="flex items-start justify-between gap-4 border-b border-preto/10 pb-5">
+          <div className="flex items-center gap-3">
+            <Image
+              src="/logotipo-vitora-selo.png"
+              alt=""
+              width={120}
+              height={121}
+              className="h-11 w-11 shrink-0 sm:h-12 sm:w-12"
+            />
+            <div>
+              <p className="text-sm font-extrabold leading-tight text-preto">
+                Vitora
+              </p>
+              <p className="text-[0.6875rem] font-light leading-tight text-preto/55">
+                Ata de Reunião
+              </p>
+            </div>
+          </div>
+          <p className="shrink-0 text-right text-[0.6875rem] font-light leading-tight text-preto/45">
+            Gerada automaticamente
+            <br />
+            {ATA.geradaEm}
+          </p>
+        </div>
+
+        <p className="mt-6 text-[0.625rem] font-semibold uppercase tracking-[0.2em] text-azul-medio">
           Exemplo de ata
         </p>
 
