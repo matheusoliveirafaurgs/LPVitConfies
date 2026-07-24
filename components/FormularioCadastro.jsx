@@ -200,7 +200,7 @@ export default function FormularioCadastro() {
           O acesso está a caminho
         </h2>
         <p className="mt-4 text-base leading-relaxed text-branco/90">
-          Enviamos o link do Vit para{" "}
+          Enviamos o link da Vit para{" "}
           <span className="font-semibold">{dados.email.trim()}</span>. A partir
           dele você envia o áudio de uma reunião e recebe a ata pronta.
         </p>
