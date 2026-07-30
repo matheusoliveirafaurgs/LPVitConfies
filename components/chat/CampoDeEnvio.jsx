@@ -8,12 +8,22 @@ export default function CampoDeEnvio({ desabilitado, aoEnviarTexto, aoEnviarAudi
   const gravadorRef = useRef(null);
   const pedacosRef = useRef([]);
   const inputArquivoRef = useRef(null);
+  const enviandoRef = useRef(false);
 
   function enviarTexto(evento) {
     evento.preventDefault();
-    if (!texto.trim() || desabilitado) return;
-    aoEnviarTexto(texto.trim());
+    const valor = texto.trim();
+    if (!valor || desabilitado || enviandoRef.current) return;
+
+    enviandoRef.current = true;
     setTexto("");
+    aoEnviarTexto(valor);
+
+    // libera a trava local logo em seguida — quem controla o estado
+    // "aguardando resposta do servidor" de verdade é o `desabilitado` do pai
+    setTimeout(() => {
+      enviandoRef.current = false;
+    }, 400);
   }
 
   async function alternarGravacao() {
