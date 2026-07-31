@@ -15,7 +15,7 @@ export default function Mensagem({ mensagem }) {
           doUsuario
             ? "bg-azul-claro text-preto"
             : "bg-azul-escuro text-branco",
-          mensagem.tipo === "erro" ? "bg-transparent border border-azul-claro text-azul-claro" : "",
+          mensagem.tipo === "erro" ? "bg-transparent border border-azul-escuro text-azul-escuro" : "",
         ].join(" ")}
       >
         {mensagem.tipo === "audio" ? (

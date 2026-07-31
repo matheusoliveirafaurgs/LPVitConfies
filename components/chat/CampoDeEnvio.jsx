@@ -60,14 +60,20 @@ export default function CampoDeEnvio({ desabilitado, aoEnviarTexto, aoEnviarAudi
   }
 
   return (
-    <form onSubmit={enviarTexto} className="flex items-center gap-2 border-t border-branco/10 py-4">
+    <form onSubmit={enviarTexto} className="flex items-center gap-1.5 border-t border-preto/12 pt-4 sm:gap-2">
       <input
         type="text"
         value={texto}
         onChange={(e) => setTexto(e.target.value)}
         disabled={desabilitado}
-        placeholder="Escreva o que foi discutido na reunião…"
-        className="flex-1 rounded-sm border border-branco/20 bg-preto px-4 py-3 text-sm text-branco placeholder:text-branco/35 focus:border-azul-claro focus:outline-none"
+        placeholder="Escreva o que foi discutido…"
+        className={[
+          "min-w-0 flex-1 rounded-sm bg-branco px-3 py-3 text-sm sm:px-4 sm:py-3.5 sm:text-base",
+          "text-preto placeholder:text-preto/35",
+          "border border-preto/20 transition-colors duration-150",
+          "hover:border-preto/35 focus:border-azul-escuro",
+          "focus:outline-none focus:ring-2 focus:ring-azul-escuro/40 focus:ring-offset-0",
+        ].join(" ")}
       />
 
       <input
@@ -81,7 +87,11 @@ export default function CampoDeEnvio({ desabilitado, aoEnviarTexto, aoEnviarAudi
         type="button"
         disabled={desabilitado}
         onClick={() => inputArquivoRef.current?.click()}
-        className="shrink-0 rounded-sm border border-branco/20 px-3 py-3 text-branco hover:border-azul-claro"
+        className={[
+          "shrink-0 rounded-sm border border-preto/20 px-2.5 py-3 text-preto sm:px-3 sm:py-3.5",
+          "transition-colors duration-150 hover:border-azul-escuro hover:text-azul-escuro",
+          "disabled:cursor-not-allowed disabled:opacity-40",
+        ].join(" ")}
         aria-label="Enviar arquivo de áudio"
       >
         📎
@@ -92,8 +102,11 @@ export default function CampoDeEnvio({ desabilitado, aoEnviarTexto, aoEnviarAudi
         disabled={desabilitado}
         onClick={alternarGravacao}
         className={[
-          "shrink-0 rounded-sm px-3 py-3",
-          gravando ? "bg-azul-claro text-preto" : "border border-branco/20 text-branco hover:border-azul-claro",
+          "shrink-0 rounded-sm px-2.5 py-3 transition-colors duration-150 sm:px-3 sm:py-3.5",
+          gravando
+            ? "bg-azul-escuro text-branco"
+            : "border border-preto/20 text-preto hover:border-azul-escuro hover:text-azul-escuro",
+          "disabled:cursor-not-allowed disabled:opacity-40",
         ].join(" ")}
         aria-label={gravando ? "Parar gravação" : "Gravar áudio"}
       >
@@ -103,9 +116,18 @@ export default function CampoDeEnvio({ desabilitado, aoEnviarTexto, aoEnviarAudi
       <button
         type="submit"
         disabled={desabilitado || !texto.trim()}
-        className="shrink-0 rounded-sm bg-azul-claro px-5 py-3 text-sm font-semibold text-preto disabled:opacity-40"
+        aria-label="Enviar"
+        className={[
+          "shrink-0 rounded-sm px-3 py-3 text-sm font-semibold sm:px-5 sm:py-3.5",
+          "bg-azul-escuro text-branco transition-colors duration-150",
+          "hover:bg-preto focus:outline-none focus-visible:ring-2",
+          "focus-visible:ring-azul-escuro focus-visible:ring-offset-2",
+          "focus-visible:ring-offset-branco",
+          "disabled:cursor-not-allowed disabled:bg-azul-medio disabled:text-branco/70",
+        ].join(" ")}
       >
-        Enviar
+        <span className="hidden sm:inline">Enviar</span>
+        <span className="sm:hidden" aria-hidden="true">→</span>
       </button>
     </form>
   );
