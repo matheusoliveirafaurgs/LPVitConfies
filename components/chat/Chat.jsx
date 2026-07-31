@@ -17,8 +17,8 @@ export default function Chat({ sessionId }) {
         className="pointer-events-none absolute -right-32 -top-24 w-[42rem] text-preto opacity-[0.04] sm:-right-40 sm:w-[56rem] lg:-right-56 lg:w-[72rem]"
       />
 
-      <div className="relative mx-auto flex h-screen max-w-2xl flex-col px-4 sm:px-6 lg:px-8">
-        <header className="flex items-center gap-3 border-b border-preto/12 bg-branco py-6 sm:py-8 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+      <div className="relative mx-auto flex h-screen max-w-2xl flex-col bg-branco shadow-[0_0_0_1px_rgba(22,22,20,0.08)]">
+        <header className="flex items-center gap-3 border-b border-preto/25 bg-fundo-topo-rodape px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
           <div className="h-12 w-12 shrink-0 rounded-full bg-branco p-0.5 ring-2 ring-azul-escuro/30">
             <div className="relative h-full w-full overflow-hidden rounded-full">
               <Image
@@ -41,7 +41,7 @@ export default function Chat({ sessionId }) {
           </div>
         </header>
 
-        <div className="pt-6 sm:pt-8">
+        <div className="px-4 pt-6 sm:px-6 sm:pt-8 lg:px-8">
           <p className="text-[0.6875rem] font-light uppercase tracking-[0.18em] text-azul-escuro">
             Vit
           </p>
@@ -50,7 +50,7 @@ export default function Chat({ sessionId }) {
           </h1>
         </div>
 
-        <div className="flex-1 space-y-4 overflow-y-auto py-6">
+        <div className="flex-1 space-y-4 overflow-y-auto px-4 py-6 sm:px-6 lg:px-8">
           {mensagens.length === 0 && (
             <div className="rounded-sm border border-preto/10 bg-azul-claro/10 p-5 sm:p-6">
               <p className="text-sm font-light leading-relaxed text-preto/80">
@@ -69,7 +69,7 @@ export default function Chat({ sessionId }) {
           )}
         </div>
 
-        <div className="border-t border-preto/12 bg-fundo-rodape py-6 sm:py-8 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
+        <div className="border-t border-preto/25 bg-fundo-topo-rodape px-4 pb-6 pt-4 sm:px-6 sm:pb-8 lg:px-8">
           <CampoDeEnvio
             desabilitado={enviando}
             aoEnviarTexto={enviarTexto}

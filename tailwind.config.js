@@ -15,6 +15,7 @@ module.exports = {
         "azul-claro": "rgb(var(--vt-azul-claro) / <alpha-value>)",
         "fundo-chat": "rgb(var(--vt-fundo-chat) / <alpha-value>)",
         "fundo-rodape": "rgb(var(--vt-fundo-rodape) / <alpha-value>)",
+        "fundo-topo-rodape": "rgb(var(--vt-fundo-topo-rodape) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--vt-fonte)", "system-ui", "sans-serif"],
