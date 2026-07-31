@@ -13,6 +13,8 @@ module.exports = {
         "azul-escuro": "rgb(var(--vt-azul-escuro) / <alpha-value>)",
         "azul-medio": "rgb(var(--vt-azul-medio) / <alpha-value>)",
         "azul-claro": "rgb(var(--vt-azul-claro) / <alpha-value>)",
+        "fundo-chat": "rgb(var(--vt-fundo-chat) / <alpha-value>)",
+        "fundo-rodape": "rgb(var(--vt-fundo-rodape) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--vt-fonte)", "system-ui", "sans-serif"],
