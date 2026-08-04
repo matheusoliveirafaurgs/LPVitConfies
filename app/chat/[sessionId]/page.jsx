@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Chat from "../../../components/chat/Chat";
+import ResultadoAta from "../../../components/chat/ResultadoAta";
 
 const VALIDA_ACESSO_URL = process.env.NEXT_PUBLIC_VIT_VALIDA_ACESSO_URL;
 
