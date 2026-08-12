@@ -1,3 +1,5 @@
+import ResultadoAta from "./ResultadoAta";
+
 export default function Mensagem({ mensagem }) {
   const doUsuario = mensagem.autor === "usuario";
   const ehErro = mensagem.tipo === "erro";
