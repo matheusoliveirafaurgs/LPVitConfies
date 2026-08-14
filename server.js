@@ -9,7 +9,7 @@ app.prepare().then(() => {
   createServer((req, res) => {
     const parsedUrl = parse(req.url, true);
     handle(req, res, parsedUrl);
-  }).listen(process.env.PORT || process.env.PORT_ENV_VAR || 3000, () => {
+  }).listen(process.env.PORT || 3000, () => {
     console.log("Vit pronto");
   });
 });
