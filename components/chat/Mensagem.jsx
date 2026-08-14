@@ -17,7 +17,7 @@ export default function Mensagem({ mensagem }) {
   return (
     <div className={doUsuario ? "flex justify-end" : "flex justify-start"}>
       <div
-        className={`max-w-[80%] rounded-sm px-4 py-3 text-sm leading-relaxed ${classeBolha}`}
+        className={`max-w-[80%] rounded-sm px-4 py-3 text-sm font-light leading-relaxed ${classeBolha}`}
       >
         {mensagem.tipo === "audio" ? (
           <audio controls src={mensagem.conteudo} className="w-56" />
