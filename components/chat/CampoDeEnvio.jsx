@@ -2,9 +2,14 @@
 
 import { useRef, useState } from "react";
 
-export default function CampoDeEnvio({ desabilitado, aoEnviarTexto, aoEnviarAudio }) {
+export default function CampoDeEnvio({
+  desabilitado,
+  aoEnviarTexto,
+  aoEnviarAudio,
+}) {
   const [texto, setTexto] = useState("");
   const [gravando, setGravando] = useState(false);
+
   const gravadorRef = useRef(null);
   const pedacosRef = useRef([]);
   const inputArquivoRef = useRef(null);
@@ -12,15 +17,18 @@ export default function CampoDeEnvio({ desabilitado, aoEnviarTexto, aoEnviarAudi
 
   function enviarTexto(evento) {
     evento.preventDefault();
+
     const valor = texto.trim();
-    if (!valor || desabilitado || enviandoRef.current) return;
+
+    if (!valor || desabilitado || enviandoRef.current) {
+      return;
+    }
 
     enviandoRef.current = true;
     setTexto("");
+
     aoEnviarTexto(valor);
 
-    // libera a trava local logo em seguida — quem controla o estado
-    // "aguardando resposta do servidor" de verdade é o `desabilitado` do pai
     setTimeout(() => {
       enviandoRef.current = false;
     }, 400);
@@ -34,48 +42,57 @@ export default function CampoDeEnvio({ desabilitado, aoEnviarTexto, aoEnviarAudi
     }
 
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const stream = await navigator.mediaDevices.getUserMedia({
+        audio: true,
+      });
+
       const gravador = new MediaRecorder(stream);
+
       pedacosRef.current = [];
 
-      gravador.ondataavailable = (e) => pedacosRef.current.push(e.data);
+      gravador.ondataavailable = (evento) => {
+        pedacosRef.current.push(evento.data);
+      };
+
       gravador.onstop = () => {
-        const blob = new Blob(pedacosRef.current, { type: "audio/webm" });
-        stream.getTracks().forEach((t) => t.stop());
+        const blob = new Blob(pedacosRef.current, {
+          type: "audio/webm",
+        });
+
+        stream.getTracks().forEach((track) => {
+          track.stop();
+        });
+
         aoEnviarAudio(blob);
       };
 
       gravador.start();
+
       gravadorRef.current = gravador;
       setGravando(true);
     } catch {
-      alert("Não consegui acessar o microfone. Confere a permissão do navegador.");
+      alert(
+        "Não consegui acessar o microfone. Confere a permissão do navegador.",
+      );
     }
   }
 
   function arquivoSelecionado(evento) {
     const arquivo = evento.target.files?.[0];
-    if (arquivo) aoEnviarAudio(arquivo);
+
+    if (arquivo) {
+      aoEnviarAudio(arquivo);
+    }
+
     evento.target.value = "";
   }
 
   return (
-    <form onSubmit={enviarTexto} className="flex items-center gap-1.5 border-t border-preto/12 pt-4 sm:gap-2">
-      <input
-        type="text"
-        value={texto}
-        onChange={(e) => setTexto(e.target.value)}
-        disabled={desabilitado}
-        placeholder="Escreva o que foi discutido…"
-        className={[
-          "min-w-0 flex-1 rounded-sm bg-branco px-3 py-3 text-sm sm:px-4 sm:py-3.5 sm:text-base",
-          "text-preto placeholder:text-preto/35",
-          "border border-preto/20 transition-colors duration-150",
-          "hover:border-preto/35 focus:border-azul-escuro",
-          "focus:outline-none focus:ring-2 focus:ring-azul-escuro/40 focus:ring-offset-0",
-        ].join(" ")}
-      />
-
+    <form
+      onSubmit={enviarTexto}
+      className="flex min-w-0 items-center gap-[8px] sm:gap-[12px]"
+    >
+      {/* Upload oculto */}
       <input
         ref={inputArquivoRef}
         type="file"
@@ -83,51 +100,118 @@ export default function CampoDeEnvio({ desabilitado, aoEnviarTexto, aoEnviarAudi
         onChange={arquivoSelecionado}
         className="hidden"
       />
+
+      {/* Anexar */}
       <button
         type="button"
         disabled={desabilitado}
         onClick={() => inputArquivoRef.current?.click()}
+        aria-label="Enviar arquivo de áudio"
+        title="Anexar arquivo de áudio"
         className={[
-          "shrink-0 rounded-sm border border-preto/20 px-2.5 py-3 text-preto sm:px-3 sm:py-3.5",
-          "transition-colors duration-150 hover:border-azul-escuro hover:text-azul-escuro",
+          "flex h-[40px] w-[40px] shrink-0 items-center justify-center",
+          "rounded-[6px] bg-[#F3F5F7] text-[#1B456A]",
+          "transition-colors duration-150",
+          "hover:bg-[#E8EDF2]",
           "disabled:cursor-not-allowed disabled:opacity-40",
         ].join(" ")}
-        aria-label="Enviar arquivo de áudio"
       >
-        📎
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M13.234 20.252 21 12.3" />
+          <path d="m16 6-8.414 8.586a2 2 0 0 0 2.829 2.829L18.828 9" />
+          <path d="M18.828 9a4 4 0 0 0-5.657-5.657L4.757 11.757a6 6 0 0 0 8.486 8.486L21.657 11.83" />
+        </svg>
       </button>
 
+      {/* Microfone */}
       <button
         type="button"
         disabled={desabilitado}
         onClick={alternarGravacao}
+        aria-label={gravando ? "Parar gravação" : "Gravar áudio"}
+        title={gravando ? "Parar gravação" : "Gravar áudio"}
         className={[
-          "shrink-0 rounded-sm px-2.5 py-3 transition-colors duration-150 sm:px-3 sm:py-3.5",
+          "flex h-[40px] w-[40px] shrink-0 items-center justify-center",
+          "rounded-[6px] transition-colors duration-150",
           gravando
-            ? "bg-azul-escuro text-branco"
-            : "border border-preto/20 text-preto hover:border-azul-escuro hover:text-azul-escuro",
+            ? "bg-[#1B456A] text-white"
+            : "bg-[#F3F5F7] text-[#1B456A] hover:bg-[#E8EDF2]",
           "disabled:cursor-not-allowed disabled:opacity-40",
         ].join(" ")}
-        aria-label={gravando ? "Parar gravação" : "Gravar áudio"}
       >
-        {gravando ? "■" : "●"}
+        {gravando ? (
+          <span
+            className="h-[14px] w-[14px] rounded-[2px] bg-white"
+            aria-hidden="true"
+          />
+        ) : (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+            <line x1="12" x2="12" y1="19" y2="22" />
+          </svg>
+        )}
       </button>
 
+      {/* Campo */}
+      <input
+        type="text"
+        value={texto}
+        onChange={(evento) => setTexto(evento.target.value)}
+        disabled={desabilitado}
+        placeholder="Escreva o que foi discutido..."
+        className={[
+          "h-[40px] min-w-0 flex-1 rounded-[6px]",
+          "border border-transparent bg-[#F3F5F7]",
+          "px-[12px] sm:px-[16px]",
+          "text-[13px] font-normal text-[#161614]",
+          "placeholder:text-[#A3A3A1]",
+          "focus:border-[#1B456A]/30 focus:bg-white",
+          "focus:outline-none focus:ring-1 focus:ring-[#1B456A]/15",
+          "disabled:cursor-not-allowed disabled:opacity-60",
+        ].join(" ")}
+      />
+
+      {/* Enviar — texto no desktop, seta no mobile */}
       <button
         type="submit"
         disabled={desabilitado || !texto.trim()}
         aria-label="Enviar"
         className={[
-          "shrink-0 rounded-sm px-3 py-3 text-sm font-semibold sm:px-5 sm:py-3.5",
-          "bg-azul-escuro text-branco transition-colors duration-150",
-          "hover:bg-preto focus:outline-none focus-visible:ring-2",
-          "focus-visible:ring-azul-escuro focus-visible:ring-offset-2",
-          "focus-visible:ring-offset-branco",
-          "disabled:cursor-not-allowed disabled:bg-azul-medio disabled:text-branco/70",
+          "flex h-[40px] shrink-0 items-center justify-center rounded-[6px]",
+          "bg-[#161614] font-semibold text-white",
+          "transition-colors duration-150",
+          "hover:bg-[#1B456A]",
+          "disabled:cursor-not-allowed disabled:bg-[#AEB4B8]",
+          "w-[40px] px-0 sm:w-auto sm:px-[20px]",
         ].join(" ")}
       >
-        <span className="hidden sm:inline">Enviar</span>
-        <span className="sm:hidden" aria-hidden="true">→</span>
+        <span className="text-[18px] sm:hidden">→</span>
+        <span className="hidden text-[13px] sm:inline">
+          Enviar
+        </span>
       </button>
     </form>
   );

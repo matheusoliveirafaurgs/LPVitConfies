@@ -1,82 +1,327 @@
 "use client";
 
 import Image from "next/image";
-import Grafismo from "../Grafismo";
+import { useState } from "react";
+
 import { useSessaoChat } from "../../lib/chat/useSessaoChat";
 import Mensagem from "./Mensagem";
 import CampoDeEnvio from "./CampoDeEnvio";
+
+const perguntasExemplo = [
+  "Quais são os módulos disponíveis no Vitora?",
+  'Gere uma ata com base no texto a seguir: "Texto"',
+  "Quais os planos e valores do Vitora?",
+];
 
 export default function Chat({ sessionId }) {
   const { mensagens, enviando, enviarTexto, enviarAudio } =
     useSessaoChat(sessionId);
 
-  return (
-    <div className="relative min-h-screen overflow-hidden bg-fundo-chat text-preto">
-      {/* Grafismo institucional como fundo, em baixa opacidade */}
-      <Grafismo
-        className="pointer-events-none absolute -right-32 -top-24 w-[42rem] text-preto opacity-[0.04] sm:-right-40 sm:w-[56rem] lg:-right-56 lg:w-[72rem]"
-      />
+  const [painelAberto, setPainelAberto] = useState(false);
 
-      <div className="relative mx-auto flex h-screen max-w-2xl flex-col bg-branco shadow-[0_0_0_1px_rgba(22,22,20,0.08)]">
-        <header className="flex items-center gap-3 border-b border-preto/25 bg-fundo-topo-rodape px-4 py-6 sm:px-6 sm:py-8 lg:px-8">
-          <div className="h-12 w-12 shrink-0 rounded-full bg-branco p-0.5 ring-2 ring-azul-escuro/30">
-            <div className="relative h-full w-full overflow-hidden rounded-full">
-              <Image
-                src="/vit-avatar.png"
-                alt="Vit"
-                fill
-                priority
-                className="object-cover object-top"
+  function enviarPerguntaExemplo(pergunta) {
+    if (enviando) return;
+
+    setPainelAberto(false);
+    enviarTexto(pergunta);
+  }
+
+  return (
+    <div className="flex h-[100dvh] min-h-[620px] flex-col overflow-hidden bg-white text-[#161614]">
+      {/* HEADER */}
+      <header className="relative h-[108px] shrink-0 overflow-hidden bg-[#161614] text-white md:h-[152px]">
+        {/* Conteúdo */}
+        <div className="relative z-20 flex h-full items-center px-[22px] sm:px-[40px] md:px-[64px]">
+          <div className="flex items-center gap-[14px] sm:gap-[18px]">
+            {/* Logo */}
+            <div className="flex h-[42px] w-[112px] shrink-0 items-center sm:h-[48px] sm:w-[142px] md:h-[52px] md:w-[170px]">
+              <img
+                src="/vitora-logo-branco.png"
+                alt="Vitora"
+                className="h-auto w-[105px] object-contain sm:w-[132px] md:w-[150px]"
               />
             </div>
-          </div>
-          <div>
-            <p className="text-base font-extrabold leading-tight text-preto">
-              Vit
-            </p>
-            <p className="flex items-center gap-1.5 text-xs font-light text-preto/60">
-              <span className="h-1.5 w-1.5 rounded-full bg-azul-escuro" />
-              Online
-            </p>
-          </div>
-        </header>
 
-        <div className="px-4 pt-6 sm:px-6 sm:pt-8 lg:px-8">
-          <p className="text-[0.6875rem] font-light uppercase tracking-[0.18em] text-azul-escuro">
-            Vit
-          </p>
-          <h1 className="mt-2 text-xl font-extrabold leading-tight tracking-tight text-preto sm:text-2xl">
-            Envie o áudio ou o resumo da sua reunião
-          </h1>
-        </div>
+            {/* Separador */}
+            <div className="h-[34px] w-px shrink-0 bg-white/25" />
 
-        <div className="flex-1 space-y-4 overflow-y-auto px-4 py-6 sm:px-6 lg:px-8">
-          {mensagens.length === 0 && (
-            <div className="rounded-sm border border-preto/10 bg-azul-claro/10 p-5 sm:p-6">
-              <p className="text-sm font-light leading-relaxed text-preto/80">
-                Grave, envie um áudio, ou escreva o que foi discutido — a Vit
-                monta a ata com participantes, assuntos e encaminhamentos.
+            {/* Título */}
+            <div className="min-w-0">
+              <p className="text-[16px] font-semibold leading-[19px] md:text-[18px] md:leading-[21px]">
+                Vit
+              </p>
+
+              <p className="mt-[2px] max-w-[140px] text-[11px] font-normal leading-[14px] text-white/65 sm:max-w-none md:text-[12px] md:leading-[16px]">
+                Assistente de Reuniões · Vitora
               </p>
             </div>
-          )}
-          {mensagens.map((msg, i) => (
-            <Mensagem key={i} mensagem={msg} />
-          ))}
-          {enviando && (
-            <p className="text-sm font-light text-preto/50">
-              Vit está processando…
-            </p>
-          )}
+          </div>
         </div>
 
-        <div className="border-t border-preto/25 bg-fundo-topo-rodape px-4 pb-6 pt-4 sm:px-6 sm:pb-8 lg:px-8">
-          <CampoDeEnvio
-            desabilitado={enviando}
-            aoEnviarTexto={enviarTexto}
-            aoEnviarAudio={enviarAudio}
+        {/* Grafismo */}
+        <div className="pointer-events-none absolute inset-y-0 left-[430px] right-0 z-10 hidden overflow-hidden md:block">
+          {/* Linha superior */}
+          <div
+            className="absolute left-0 top-[-8px] h-[92px] w-full opacity-[0.18]"
+            style={{
+              backgroundImage: 'url("/vitora-grafismo-header.png")',
+              backgroundRepeat: "repeat-x",
+              backgroundSize: "491px 92px",
+              backgroundPosition: "0 0",
+            }}
+          />
+
+          {/* Linha inferior */}
+          <div
+            className="absolute left-0 top-[70px] h-[92px] w-full opacity-[0.18]"
+            style={{
+              backgroundImage: 'url("/vitora-grafismo-header.png")',
+              backgroundRepeat: "repeat-x",
+              backgroundSize: "491px 92px",
+              backgroundPosition: "90px 0",
+            }}
           />
         </div>
+      </header>
+
+      {/* MOBILE — botão/painel informativo */}
+      <div className="shrink-0 border-b border-[#E2E4E7] bg-[#F3F5F7] md:hidden">
+        <button
+          type="button"
+          onClick={() => setPainelAberto((aberto) => !aberto)}
+          className="flex h-[48px] w-full items-center justify-between px-[20px] text-left"
+          aria-expanded={painelAberto}
+        >
+          <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1B456A]">
+            Sobre a Vit
+          </span>
+
+          <span
+            className={[
+              "text-[20px] leading-none text-[#1B456A]",
+              "transition-transform duration-200",
+              painelAberto ? "rotate-180" : "",
+            ].join(" ")}
+          >
+            ⌄
+          </span>
+        </button>
+
+        {painelAberto && (
+          <div className="max-h-[52dvh] overflow-y-auto border-t border-[#E2E4E7] px-[20px] pb-[22px] pt-[18px]">
+            <div className="rounded-[6px] border border-[#DEE1E4] bg-white px-[16px] py-[16px]">
+              <h2 className="text-[13px] font-semibold text-[#161614]">
+                O que posso fazer?
+              </h2>
+
+              <ul className="mt-[14px] space-y-[12px] text-[13px] font-normal leading-[18px] text-[#5D5D5B]">
+                <li className="flex gap-[8px]">
+                  <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
+                  <span>
+                    Transformar áudios ou textos em uma ata de reunião.
+                  </span>
+                </li>
+
+                <li className="flex gap-[8px]">
+                  <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
+                  <span>
+                    Listar os módulos existentes no Vitora e nossa base de
+                    conhecimento.
+                  </span>
+                </li>
+
+                <li className="flex gap-[8px]">
+                  <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
+                  <span>Informar os planos do Vitora.</span>
+                </li>
+              </ul>
+            </div>
+
+            <p className="mt-[22px] text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1B456A]">
+              Perguntas de exemplo
+            </p>
+
+            <div className="mt-[14px] space-y-[8px]">
+              {perguntasExemplo.map((pergunta) => (
+                <button
+                  key={pergunta}
+                  type="button"
+                  disabled={enviando}
+                  onClick={() => enviarPerguntaExemplo(pergunta)}
+                  className={[
+                    "flex min-h-[48px] w-full items-center gap-[10px]",
+                    "rounded-[6px] border border-[#DEE1E4] bg-white",
+                    "px-[12px] py-[10px] text-left",
+                    "text-[12px] font-normal leading-[15px] text-[#4D4D4B]",
+                    "disabled:cursor-not-allowed disabled:opacity-50",
+                  ].join(" ")}
+                >
+                  <span className="shrink-0 text-[18px] leading-none text-[#1B456A]">
+                    ›
+                  </span>
+
+                  <span>{pergunta}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
+
+      {/* CONTEÚDO */}
+      <div className="flex min-h-0 flex-1">
+        {/* DESKTOP — SIDEBAR */}
+        <aside className="hidden w-[300px] shrink-0 border-r border-[#E2E4E7] bg-[#F3F5F7] px-[24px] py-[28px] md:block">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1B456A]">
+            Sobre o assistente
+          </p>
+
+          <div className="mt-[22px] rounded-[6px] border border-[#DEE1E4] bg-white px-[16px] py-[16px]">
+            <h2 className="text-[13px] font-semibold text-[#161614]">
+              O que posso fazer?
+            </h2>
+
+            <ul className="mt-[14px] space-y-[12px] text-[13px] font-normal leading-[18px] text-[#5D5D5B]">
+              <li className="flex gap-[8px]">
+                <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
+                <span>Transformar áudios ou textos em uma ata de reunião.</span>
+              </li>
+
+              <li className="flex gap-[8px]">
+                <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
+                <span>
+                  Listar os módulos existentes no Vitora e nossa base de
+                  conhecimento.
+                </span>
+              </li>
+
+              <li className="flex gap-[8px]">
+                <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
+                <span>Informar os planos do Vitora.</span>
+              </li>
+            </ul>
+          </div>
+
+          <p className="mt-[26px] text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1B456A]">
+            Perguntas de exemplo
+          </p>
+
+          <div className="mt-[18px] space-y-[8px]">
+            {perguntasExemplo.map((pergunta) => (
+              <button
+                key={pergunta}
+                type="button"
+                disabled={enviando}
+                onClick={() => enviarPerguntaExemplo(pergunta)}
+                className={[
+                  "flex min-h-[48px] w-full items-center gap-[10px]",
+                  "rounded-[6px] border border-[#DEE1E4] bg-white",
+                  "px-[12px] py-[10px] text-left",
+                  "text-[12px] font-normal leading-[15px] text-[#4D4D4B]",
+                  "transition-colors duration-150",
+                  "hover:border-[#B9C5CF] hover:bg-[#FAFBFC]",
+                  "disabled:cursor-not-allowed disabled:opacity-50",
+                ].join(" ")}
+              >
+                <span className="shrink-0 text-[18px] leading-none text-[#1B456A]">
+                  ›
+                </span>
+
+                <span>{pergunta}</span>
+              </button>
+            ))}
+          </div>
+        </aside>
+
+        {/* CHAT */}
+        <main className="flex min-h-0 min-w-0 flex-1 flex-col bg-white">
+          {/* Mensagens */}
+          <div className="min-h-0 flex-1 overflow-y-auto px-[20px] py-[24px] sm:px-[32px] sm:py-[30px] md:px-[52px] md:py-[36px]">
+            {mensagens.length === 0 && (
+              <div>
+                {/* Perfil Vit */}
+                <div className="flex items-center gap-[14px]">
+                  <div className="relative h-[52px] w-[52px] shrink-0 overflow-hidden rounded-full bg-[#161614]">
+                    <Image
+                      src="/vit-chat-avatar.png"
+                      alt="Vit"
+                      width={180}
+                      height={360}
+                      priority
+                      className="absolute left-1/2 top-[-10px] h-auto w-[94px] max-w-none -translate-x-1/2"
+                    />
+                  </div>
+
+                  <div>
+                    <p className="text-[16px] font-semibold leading-[19px] text-[#161614]">
+                      Vit
+                    </p>
+
+                    <p className="mt-[2px] flex items-center gap-[6px] text-[12px] leading-[15px] text-[#777775]">
+                      <span className="h-[6px] w-[6px] rounded-full bg-[#1B456A]" />
+                      Online
+                    </p>
+                  </div>
+                </div>
+
+                {/* Mensagem inicial */}
+                <div
+                  className={[
+                    "mt-[18px] w-full max-w-[420px]",
+                    "rounded-[6px] bg-[#161614]",
+                    "px-[16px] py-[12px]",
+                    "text-[13px] font-normal leading-[17px] text-white",
+                    "sm:ml-[66px]",
+                  ].join(" ")}
+                >
+                  Olá! Sou a Vit, assistente de reuniões da Vitora. Envie o
+                  áudio ou o resumo da sua reunião — eu cuido do resto.
+                </div>
+              </div>
+            )}
+
+            {mensagens.length > 0 && (
+              <div className="space-y-[16px]">
+                {mensagens.map((mensagem, index) => (
+                  <Mensagem key={index} mensagem={mensagem} />
+                ))}
+              </div>
+            )}
+
+            {enviando && (
+              <div className="mt-[16px] flex items-center gap-[10px]">
+                <div className="relative h-[32px] w-[32px] shrink-0 overflow-hidden rounded-full bg-[#161614]">
+                  <Image
+                    src="/vit-chat-avatar.png"
+                    alt=""
+                    width={180}
+                    height={360}
+                    className="absolute left-1/2 top-[-6px] h-auto w-[54px] max-w-none -translate-x-1/2"
+                  />
+                </div>
+
+                <p className="text-[12px] text-[#777775]">
+                  Vit está processando…
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* INPUT */}
+          <div className="shrink-0 border-t border-[#E2E4E7] bg-white px-[10px] py-[12px] sm:px-[20px] md:px-[32px] md:py-[18px]">
+            <CampoDeEnvio
+              desabilitado={enviando}
+              aoEnviarTexto={enviarTexto}
+              aoEnviarAudio={enviarAudio}
+            />
+          </div>
+        </main>
+      </div>
+
+      {/* FOOTER */}
+      <footer className="hidden h-[42px] shrink-0 items-center justify-center bg-[#161614] text-[10px] font-normal tracking-[0.12em] text-white/45 sm:flex">
+        VITORA · O futuro da qualidade
+      </footer>
     </div>
   );
 }
