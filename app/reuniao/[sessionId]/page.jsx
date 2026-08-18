@@ -109,7 +109,7 @@ export default function PaginaChat({ params }) {
           </p>
 
           <a
-            href="https://lp.vitora.com.br/confiesvit"
+            href="https://lp.vitora.com.br/vitreuniao/"
             className="mt-6 inline-block rounded-sm bg-azul-escuro px-5 py-3 text-sm font-semibold text-branco transition-colors hover:bg-preto"
           >
             Voltar para o cadastro

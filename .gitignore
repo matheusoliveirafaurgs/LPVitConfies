@@ -12,3 +12,5 @@ out/
 .DS_Store
 
 Audios/
+deploy/
+LPVitConfies-build.zip
