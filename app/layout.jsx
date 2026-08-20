@@ -10,7 +10,21 @@ export const metadata = {
   title: "Vit — sua reuniao vira ata | Vitora",
   description:
     "Envie o audio de uma reuniao e receba a ata pronta, com participantes, assuntos e encaminhamentos. Uma amostra do Vitora no 9o Congresso Nacional do CONFIES.",
-  robots: { index: false, follow: false },
+
+  icons: {
+    icon: [
+      {
+        url: "/favicon-preto.png?v=3",
+        type: "image/png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-branco.png?v=3",
+        type: "image/png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
 };
 
 export const viewport = {

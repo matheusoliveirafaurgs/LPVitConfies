@@ -2,6 +2,77 @@
 import { Montserrat } from "next/font/google";
 import FormularioAcessoV2 from "../../components/landing-v2/FormularioAcessoV2";
 
+export const metadata = {
+  title: "Vit — sua reunião vira ata | Vitora",
+
+  description:
+    "Envie o áudio de uma reunião e receba a ata pronta, com participantes, assuntos e encaminhamentos. Uma amostra do Vitora no 9º Congresso Nacional do CONFIES.",
+
+  alternates: {
+    canonical: "https://lp.vitora.com.br/vitreuniao",
+  },
+
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+
+  openGraph: {
+    type: "website",
+    locale: "pt_BR",
+    url: "https://lp.vitora.com.br/vitreuniao",
+    siteName: "Vitora",
+    title: "Vit — sua reunião vira ata | Vitora",
+    description:
+      "Envie o áudio de uma reunião e receba a ata pronta, com participantes, assuntos e encaminhamentos.",
+  },
+
+  twitter: {
+    card: "summary_large_image",
+    title: "Vit — sua reunião vira ata | Vitora",
+    description:
+      "Envie o áudio de uma reunião e receba a ata pronta, com participantes, assuntos e encaminhamentos.",
+  },
+
+  icons: {
+    icon: [
+      {
+        url: "/favicon-preto.png?v=3",
+        type: "image/png",
+        media: "(prefers-color-scheme: light)",
+      },
+      {
+        url: "/favicon-branco.png?v=3",
+        type: "image/png",
+        media: "(prefers-color-scheme: dark)",
+      },
+    ],
+  },
+};
+
+const vitStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Vit",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "O Vit é um agente de IA da Vitora que transforma o áudio de reuniões em atas estruturadas, organizando participantes, assuntos, decisões e encaminhamentos.",
+  provider: {
+    "@type": "Organization",
+    name: "Vitora",
+    url: "https://www.vitora.com.br",
+  },
+  url: "https://lp.vitora.com.br/vitreuniao",
+};
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "700", "800"],
@@ -52,190 +123,192 @@ function IconeWhatsapp(props) {
 
 export default function LandingV2() {
   return (
-    <div className={`${montserrat.className} bg-branco text-preto`}>
-      <section
-        id="topo"
-        className="relative isolate overflow-hidden bg-preto"
-      >
-        <Image
-          src="/landing-v2/hero-reuniao.jpg"
-          alt="Pessoa em reuniao por videochamada"
-          fill
-          priority
-          className="object-cover opacity-70"
-        />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(vitStructuredData),
+        }}
+      />
 
-        <div className="absolute inset-0 bg-gradient-to-t from-preto via-preto/70 to-preto/30" />
-
-        <div className="relative mx-auto flex max-w-conteudo flex-col px-5 py-8 sm:px-8 sm:py-12 lg:px-12">
+      <div className={`${montserrat.className} bg-branco text-preto`}>
+        <section
+          id="topo"
+          className="relative isolate overflow-hidden bg-preto"
+        >
           <Image
-            src="/landing-v2/logo-vitora-branco.png"
-            alt="Vitora"
-            width={209}
-            height={40}
+            src="/landing-v2/hero-reuniao.jpg"
+            alt="Pessoa em reunião por videochamada"
+            fill
             priority
-            className="block h-6 w-auto self-start sm:h-7"
+            className="object-cover opacity-70"
           />
 
-          <div className="mt-10 max-w-2xl sm:mt-14 lg:mt-16">
-            <p className="inline-block rounded-full bg-branco px-4 py-1.5 text-[0.6875rem] font-bold uppercase leading-snug tracking-wide text-preto">
-              Sua nova agente de IA para criar atas de reuniao em segundos.
-            </p>
+          <div className="absolute inset-0 bg-gradient-to-t from-preto via-preto/70 to-preto/30" />
 
-            <h1 className="mt-5 text-[1.65rem] font-extrabold uppercase leading-[1.15] tracking-tight text-branco sm:mt-6 sm:text-4xl sm:leading-[1.1] lg:text-5xl">
-              Enquanto você conduz a reuniao...
-              <br />
-              A{" "}
+          <div className="relative mx-auto flex max-w-conteudo flex-col px-5 py-8 sm:px-8 sm:py-12 lg:px-12">
+            <Image
+              src="/landing-v2/logo-vitora-branco.png"
+              alt="Vitora"
+              width={209}
+              height={40}
+              priority
+              className="block h-6 w-auto self-start sm:h-7"
+            />
+
+            <div className="mt-10 max-w-2xl sm:mt-14 lg:mt-16">
+              <p className="inline-block rounded-full bg-branco px-4 py-1.5 text-[0.6875rem] font-bold uppercase leading-snug tracking-wide text-preto">
+                Sua nova agente de IA para criar atas de reunião em segundos.
+              </p>
+
+              <h1 className="mt-5 text-[1.65rem] font-extrabold uppercase leading-[1.15] tracking-tight text-branco sm:mt-6 sm:text-4xl sm:leading-[1.1] lg:text-5xl">
+                Enquanto você conduz a reunião...
+                <br />A{" "}
+                <Image
+                  src="/landing-v2/vit-branco.png"
+                  alt="Vit"
+                  width={83}
+                  height={38}
+                  className="inline h-[0.74em] w-auto align-baseline"
+                />{" "}
+                organiza tudo para você.
+              </h1>
+
+              <p className="mt-5 max-w-lg text-sm leading-relaxed text-branco/85 sm:mt-6 sm:text-base">
+                <span className="font-bold">
+                  Preencha seus dados e receba acesso gratuito à Vit
+                </span>
+                , uma assistente desenvolvida para transformar conversas em atas
+                organizadas, economizando tempo da sua equipe e aumentando a
+                produtividade. <span className="font-bold">É gratuito.</span>
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-conteudo px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
+            <Image
+              src="/landing-v2/mascote-vit.png"
+              alt="Vit - assistente de IA da Vitora"
+              width={842}
+              height={769}
+              className="h-auto w-full"
+            />
+
+            <div>
+              <h2 className="text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
+                Receba acesso gratuito
+              </h2>
+
+              <p className="mt-3 text-sm leading-relaxed text-preto/70 sm:text-base">
+                Descubra como a Vit pode auxiliar a sua gestão da qualidade.
+              </p>
+
+              <div className="mt-8">
+                <FormularioAcessoV2 />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="bg-preto py-16 text-branco sm:py-20">
+          <div className="mx-auto max-w-conteudo px-5 sm:px-8 lg:px-12">
+            <h2 className="text-center text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
+              O que a{" "}
               <Image
                 src="/landing-v2/vit-branco.png"
                 alt="Vit"
                 width={83}
                 height={38}
-                className="inline h-[0.74em] w-auto align-baseline"
+                className="inline h-[0.72em] w-auto align-baseline"
               />{" "}
-              organiza tudo para voce.
-            </h1>
-
-            <p className="mt-5 max-w-lg text-sm leading-relaxed text-branco/85 sm:mt-6 sm:text-base">
-              <span className="font-bold">
-                Preencha seus dados e receba acesso gratuito a Vit
-              </span>
-              , uma assistente desenvolvida para transformar conversas em atas
-              organizadas, economizando tempo da sua equipe e aumentando a
-              produtividade.{" "}
-              <span className="font-bold">
-                É gratuito.
-              </span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-conteudo px-5 py-16 sm:px-8 sm:py-20 lg:px-12">
-        <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:gap-16">
-          <Image
-            src="/landing-v2/mascote-vit.png"
-            alt="Vit - assistente de IA da Vitora"
-            width={842}
-            height={769}
-            className="h-auto w-full"
-          />
-
-          <div>
-            <h2 className="text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
-              Receba acesso gratuito
+              faz para você?
             </h2>
 
-            <p className="mt-3 text-sm leading-relaxed text-preto/70 sm:text-base">
-              Descubra como a Vit pode te auxiliar a sua gestão da qualidade.
-            </p>
+            <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
+              {FUNCIONALIDADES.map(({ icone, texto }, i) => (
+                <div key={i} className="flex flex-col items-start gap-4">
+                  <Image
+                    src={icone}
+                    alt=""
+                    width={40}
+                    height={40}
+                    className="h-9 w-9"
+                    aria-hidden="true"
+                  />
 
-            <div className="mt-8">
-              <FormularioAcessoV2 />
+                  <p className="text-sm leading-relaxed text-branco/85 sm:text-base">
+                    {texto}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="bg-preto py-16 text-branco sm:py-20">
-        <div className="mx-auto max-w-conteudo px-5 sm:px-8 lg:px-12">
-          <h2 className="text-center text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
-            O que a{" "}
+        <section className="mx-auto max-w-2xl px-5 py-16 text-center sm:py-24">
+          <h2 className="text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
+            Conheça a{" "}
             <Image
-              src="/landing-v2/vit-branco.png"
+              src="/landing-v2/vit-preto.png"
               alt="Vit"
               width={83}
               height={38}
               className="inline h-[0.72em] w-auto align-baseline"
-            />{" "}
-            faz para voce?
+            />
           </h2>
 
-          <div className="mt-12 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-            {FUNCIONALIDADES.map(({ icone, texto }, i) => (
-              <div
-                key={i}
-                className="flex flex-col items-start gap-4"
-              >
-                <Image
-                  src={icone}
-                  alt=""
-                  width={40}
-                  height={40}
-                  className="h-9 w-9"
-                  aria-hidden="true"
-                />
-
-                <p className="text-sm leading-relaxed text-branco/85 sm:text-base">
-                  {texto}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-2xl px-5 py-16 text-center sm:py-24">
-        <h2 className="text-2xl font-extrabold uppercase leading-tight sm:text-3xl">
-          Conheça a{" "}
-          <Image
-            src="/landing-v2/vit-preto.png"
-            alt="Vit"
-            width={83}
-            height={38}
-            className="inline h-[0.72em] w-auto align-baseline"
-          />
-        </h2>
-
-        <p className="mt-4 text-sm leading-relaxed text-preto/70 sm:text-base">
-          Conheca gratuitamente e veja como a Inteligência Artificial pode
-          tornar sua rotina muito mais simples.
-        </p>
-
-        <a
-          href="#topo"
-          className="mt-8 inline-block rounded-full bg-preto px-8 py-4 text-sm font-bold uppercase tracking-wide text-branco transition-colors hover:bg-azul-escuro"
-        >
-          Receber acesso gratuito a Vit
-        </a>
-      </section>
-
-      <footer className="bg-preto py-8 text-branco/70">
-        <div className="mx-auto flex max-w-conteudo flex-col items-center gap-6 px-5 sm:flex-row sm:justify-between sm:px-8 lg:px-12">
-          <p className="text-xs">
-            (c) 2026 Vitora Software. Todos os direitos reservados.
+          <p className="mt-4 text-sm leading-relaxed text-preto/70 sm:text-base">
+            Conheça gratuitamente e veja como a Inteligência Artificial pode
+            tornar sua rotina muito mais simples.
           </p>
 
-          <div className="flex items-center gap-5">
-            <a
-              href="https://www.instagram.com/softwarevitora/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Instagram"
-            >
-              <IconeInstagram className="h-5 w-5 transition-colors hover:text-branco" />
-            </a>
+          <a
+            href="#topo"
+            className="mt-8 inline-block rounded-full bg-preto px-8 py-4 text-sm font-bold uppercase tracking-wide text-branco transition-colors hover:bg-azul-escuro"
+          >
+            Receber acesso gratuito à Vit
+          </a>
+        </section>
 
-            <a
-              href="https://www.linkedin.com/company/softwarevitora/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="LinkedIn"
-            >
-              <IconeLinkedin className="h-5 w-5 transition-colors hover:text-branco" />
-            </a>
+        <footer className="bg-preto py-8 text-branco/70">
+          <div className="mx-auto flex max-w-conteudo flex-col items-center gap-6 px-5 sm:flex-row sm:justify-between sm:px-8 lg:px-12">
+            <p className="text-xs">
+              © 2026 Vitora Software. Todos os direitos reservados.
+            </p>
 
-            <a
-              href="https://api.whatsapp.com/send/?phone=555133086918&text=Ol%C3%A1%21+Vim+pelo+estande+do+Vitora+no+Congresso+do+CONFIES+e+quero+saber+mais.&type=phone_number&app_absent=0"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-            >
-              <IconeWhatsapp className="h-5 w-5 transition-colors hover:text-branco" />
-            </a>
+            <div className="flex items-center gap-5">
+              <a
+                href="https://www.instagram.com/softwarevitora/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Instagram"
+              >
+                <IconeInstagram className="h-5 w-5 transition-colors hover:text-branco" />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/company/softwarevitora/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <IconeLinkedin className="h-5 w-5 transition-colors hover:text-branco" />
+              </a>
+
+              <a
+                href="https://api.whatsapp.com/send/?phone=555133086918&text=Ol%C3%A1%21+Vim+pelo+estande+do+Vitora+no+Congresso+do+CONFIES+e+quero+saber+mais.&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+              >
+                <IconeWhatsapp className="h-5 w-5 transition-colors hover:text-branco" />
+              </a>
+            </div>
           </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </>
   );
 }
