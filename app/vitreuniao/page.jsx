@@ -3,10 +3,10 @@ import { Montserrat } from "next/font/google";
 import FormularioAcessoV2 from "../../components/landing-v2/FormularioAcessoV2";
 
 export const metadata = {
-  title: "Vit — sua reunião vira ata | Vitora",
+  title: "Vit — Assistente de IA para atas de reunião | Vitora",
 
   description:
-    "Envie o áudio de uma reunião e receba a ata pronta, com participantes, assuntos e encaminhamentos. Uma amostra do Vitora no 9º Congresso Nacional do CONFIES.",
+    "Transforme reuniões em atas organizadas com a Vit, assistente de IA do Vitora. Envie o áudio e receba os principais registros.",
 
   alternates: {
     canonical: "https://lp.vitora.com.br/vitreuniao",
@@ -31,14 +31,14 @@ export const metadata = {
     siteName: "Vitora",
     title: "Vit — sua reunião vira ata | Vitora",
     description:
-      "Envie o áudio de uma reunião e receba a ata pronta, com participantes, assuntos e encaminhamentos.",
+      "Transforme reuniões em atas organizadas com a Vit, assistente de IA do Vitora. Envie o áudio e receba os principais registros.",
   },
 
   twitter: {
     card: "summary_large_image",
     title: "Vit — sua reunião vira ata | Vitora",
     description:
-      "Envie o áudio de uma reunião e receba a ata pronta, com participantes, assuntos e encaminhamentos.",
+      "Transforme reuniões em atas organizadas com a Vit, assistente de IA do Vitora. Envie o áudio e receba os principais registros.",
   },
 
   icons: {
@@ -109,6 +109,14 @@ function IconeLinkedin(props) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
       <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.446-2.136 2.94v5.666H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
+
+function IconeFacebook(props) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.438H7.078v-3.489h3.047V9.413c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.49 0-1.956.93-1.956 1.887v2.265h3.328l-.532 3.489h-2.796V24C19.612 23.094 24 18.1 24 12.073z" />
     </svg>
   );
 }
@@ -286,6 +294,15 @@ export default function LandingV2() {
                 aria-label="Instagram"
               >
                 <IconeInstagram className="h-5 w-5 transition-colors hover:text-branco" />
+              </a>
+
+              <a
+                href="https://www.facebook.com/software.vitora/"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Facebook"
+              >
+                <IconeFacebook className="h-5 w-5 transition-colors hover:text-branco" />
               </a>
 
               <a

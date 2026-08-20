@@ -8,9 +8,9 @@ import Mensagem from "./Mensagem";
 import CampoDeEnvio from "./CampoDeEnvio";
 
 const perguntasExemplo = [
-  "Quais são os módulos disponíveis no Vitora?",
-  'Gere uma ata com base no texto a seguir: "Texto"',
-  "Quais os planos e valores do Vitora?",
+  "Quais são as principais funcionalidades do Vitora?",
+  'Crie uma ata a partir do seguinte conteúdo: "Texto da reunião"',
+  "Como o Vitora pode ajudar na gestão da qualidade?",
 ];
 
 export default function Chat({ sessionId }) {
@@ -30,15 +30,14 @@ export default function Chat({ sessionId }) {
     <div className="flex h-[100dvh] min-h-[620px] flex-col overflow-hidden bg-white text-[#161614]">
       {/* HEADER */}
       <header className="relative h-[108px] shrink-0 overflow-hidden bg-[#161614] text-white md:h-[152px]">
-        {/* Conteúdo */}
         <div className="relative z-20 flex h-full items-center px-[22px] sm:px-[40px] md:px-[64px]">
           <div className="flex items-center gap-[14px] sm:gap-[18px]">
             {/* Logo */}
-            <div className="flex h-[42px] w-[112px] shrink-0 items-center sm:h-[48px] sm:w-[142px] md:h-[52px] md:w-[170px]">
+            <div className="flex h-[42px] w-[124px] shrink-0 items-center sm:h-[48px] sm:w-[152px] md:h-[52px] md:w-[180px]">
               <img
                 src="/vitora-logo-branco.png"
                 alt="Vitora"
-                className="h-auto w-[105px] object-contain sm:w-[132px] md:w-[150px]"
+                className="h-auto w-[115px] object-contain sm:w-[142px] md:w-[165px]"
               />
             </div>
 
@@ -52,17 +51,17 @@ export default function Chat({ sessionId }) {
               </p>
 
               <p className="mt-[2px] max-w-[140px] text-[11px] font-normal leading-[14px] text-white/65 sm:max-w-none md:text-[12px] md:leading-[16px]">
-                Assistente de Reuniões · Vitora
+                Assistente Virtual · Vitora
               </p>
             </div>
           </div>
         </div>
 
         {/* Grafismo */}
+        {/* Grafismo */}
         <div className="pointer-events-none absolute inset-y-0 left-[430px] right-0 z-10 hidden overflow-hidden md:block">
-          {/* Linha superior */}
           <div
-            className="absolute left-0 top-[-8px] h-[92px] w-full opacity-[0.18]"
+            className="absolute left-0 top-[-8px] h-[92px] w-full opacity-[0.40]"
             style={{
               backgroundImage: 'url("/vitora-grafismo-header.png")',
               backgroundRepeat: "repeat-x",
@@ -71,9 +70,8 @@ export default function Chat({ sessionId }) {
             }}
           />
 
-          {/* Linha inferior */}
           <div
-            className="absolute left-0 top-[70px] h-[92px] w-full opacity-[0.18]"
+            className="absolute left-0 top-[70px] h-[92px] w-full opacity-[0.40]"
             style={{
               backgroundImage: 'url("/vitora-grafismo-header.png")',
               backgroundRepeat: "repeat-x",
@@ -117,22 +115,27 @@ export default function Chat({ sessionId }) {
               <ul className="mt-[14px] space-y-[12px] text-[13px] font-normal leading-[18px] text-[#5D5D5B]">
                 <li className="flex gap-[8px]">
                   <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
+
                   <span>
-                    Transformar áudios ou textos em uma ata de reunião.
+                    Transformar áudios ou textos de reuniões em atas
+                    organizadas.
                   </span>
                 </li>
 
                 <li className="flex gap-[8px]">
                   <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
+
                   <span>
-                    Listar os módulos existentes no Vitora e nossa base de
-                    conhecimento.
+                    Responder dúvidas sobre as funcionalidades do Vitora.
                   </span>
                 </li>
 
                 <li className="flex gap-[8px]">
                   <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
-                  <span>Informar os planos do Vitora.</span>
+
+                  <span>
+                    Apresentar informações sobre soluções e planos do Vitora.
+                  </span>
                 </li>
               </ul>
             </div>
@@ -184,20 +187,26 @@ export default function Chat({ sessionId }) {
             <ul className="mt-[14px] space-y-[12px] text-[13px] font-normal leading-[18px] text-[#5D5D5B]">
               <li className="flex gap-[8px]">
                 <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
-                <span>Transformar áudios ou textos em uma ata de reunião.</span>
-              </li>
 
-              <li className="flex gap-[8px]">
-                <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
                 <span>
-                  Listar os módulos existentes no Vitora e nossa base de
-                  conhecimento.
+                  Transformar áudios ou textos de reuniões em atas organizadas.
                 </span>
               </li>
 
               <li className="flex gap-[8px]">
                 <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
-                <span>Informar os planos do Vitora.</span>
+
+                <span>
+                  Responder dúvidas sobre as funcionalidades do Vitora.
+                </span>
+              </li>
+
+              <li className="flex gap-[8px]">
+                <span className="mt-[7px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#1B456A]" />
+
+                <span>
+                  Apresentar informações sobre soluções e planos do Vitora.
+                </span>
               </li>
             </ul>
           </div>
@@ -258,7 +267,7 @@ export default function Chat({ sessionId }) {
                     </p>
 
                     <p className="mt-[2px] flex items-center gap-[6px] text-[12px] leading-[15px] text-[#777775]">
-                      <span className="h-[6px] w-[6px] rounded-full bg-[#1B456A]" />
+                      <span className="h-[6px] w-[6px] rounded-full bg-[#22C55E]" />
                       Online
                     </p>
                   </div>
@@ -274,8 +283,9 @@ export default function Chat({ sessionId }) {
                     "sm:ml-[66px]",
                   ].join(" ")}
                 >
-                  Olá! Sou a Vit, assistente de reuniões da Vitora. Envie o
-                  áudio ou o resumo da sua reunião — eu cuido do resto.
+                  Olá! Eu sou a Vit. Posso te ajudar com reuniões ou tirar
+                  dúvidas sobre o Vitora. Se quiser criar uma ata, é só me
+                  enviar o conteúdo da reunião e me dizer o que você precisa.
                 </div>
               </div>
             )}
@@ -301,7 +311,7 @@ export default function Chat({ sessionId }) {
                 </div>
 
                 <p className="text-[12px] text-[#777775]">
-                  Vit está processando…
+                  A Vit está processando…
                 </p>
               </div>
             )}
