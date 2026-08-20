@@ -5,7 +5,7 @@ import { useState } from "react";
 const WEBHOOK_URL =
   "https://n8n.vitora.com.br/webhook/vit/lead-confies";
 
-export default function FormularioConsultoria() {
+export default function FormularioSaude() {
   const [segmento, setSegmento] = useState("");
   const [status, setStatus] = useState("idle");
   // idle | loading | success | error
@@ -31,14 +31,15 @@ export default function FormularioConsultoria() {
       telefone: String(formData.get("telefone") || "").trim(),
 
       instituicao: String(formData.get("empresa") || "").trim(),
-      funcao: String(formData.get("funcao") || "").trim(),
 
       segmento,
       outroSegmento,
 
-      consentimentoLGPD: formData.get("consentimentoLGPD") === "on",
-      consentimentoVersao: "consultoria20-2026-08",
-      eventoOrigem: "LP Consultoria",
+      consentimentoLGPD:
+        formData.get("consentimentoLGPD") === "on",
+
+      consentimentoVersao: "saude-2026-08",
+      eventoOrigem: "LP Saúde",
     };
 
     try {
@@ -56,17 +57,20 @@ export default function FormularioConsultoria() {
 
       setStatus("success");
       setMensagem(
-        "Cadastro enviado com sucesso. Em breve, a equipe do Vitora poderá entrar em contato."
+        "Solicitação enviada com sucesso. Em breve, a equipe do Vitora entrará em contato."
       );
 
       event.currentTarget.reset();
       setSegmento("");
     } catch (error) {
-      console.error("Erro ao enviar formulário de consultoria:", error);
+      console.error(
+        "Erro ao enviar formulário da LP Saúde:",
+        error
+      );
 
       setStatus("error");
       setMensagem(
-        "Não foi possível enviar seu cadastro agora. Tente novamente em alguns instantes."
+        "Não foi possível enviar sua solicitação agora. Tente novamente em alguns instantes."
       );
     }
   }
@@ -79,29 +83,11 @@ export default function FormularioConsultoria() {
       <input
         type="text"
         name="nome"
-        placeholder="Nome completo"
+        placeholder="Nome e sobrenome"
         autoComplete="name"
         required
-        className="h-[38px] w-full rounded-[3px] border border-black/15 px-3 text-[11px] outline-none transition focus:border-[#49c7a9]"
+        className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
       />
-
-      <div className="grid gap-2.5 sm:grid-cols-2">
-        <input
-          type="text"
-          name="funcao"
-          placeholder="Função"
-          required
-          className="h-[38px] w-full rounded-[3px] border border-black/15 px-3 text-[11px] outline-none transition focus:border-[#49c7a9]"
-        />
-
-        <input
-          type="text"
-          name="empresa"
-          placeholder="Empresa"
-          required
-          className="h-[38px] w-full rounded-[3px] border border-black/15 px-3 text-[11px] outline-none transition focus:border-[#49c7a9]"
-        />
-      </div>
 
       <input
         type="email"
@@ -109,7 +95,15 @@ export default function FormularioConsultoria() {
         placeholder="E-mail corporativo"
         autoComplete="email"
         required
-        className="h-[38px] w-full rounded-[3px] border border-black/15 px-3 text-[11px] outline-none transition focus:border-[#49c7a9]"
+        className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
+      />
+
+      <input
+        type="text"
+        name="empresa"
+        placeholder="Empresa"
+        required
+        className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
       />
 
       <div className="grid gap-2.5 sm:grid-cols-2">
@@ -119,25 +113,41 @@ export default function FormularioConsultoria() {
           placeholder="Telefone"
           autoComplete="tel"
           required
-          className="h-[38px] w-full rounded-[3px] border border-black/15 px-3 text-[11px] outline-none transition focus:border-[#49c7a9]"
+          className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
         />
 
         <select
           name="segmento"
           value={segmento}
-          onChange={(event) => setSegmento(event.target.value)}
+          onChange={(event) =>
+            setSegmento(event.target.value)
+          }
           required
-          className="h-[38px] w-full rounded-[3px] border border-black/15 bg-white px-3 text-[11px] text-black/60 outline-none transition focus:border-[#49c7a9]"
+          className="h-[42px] w-full rounded-[5px] border border-black/15 bg-white px-3 text-[12px] text-black/60 outline-none transition focus:border-[#4EAED4]"
         >
           <option value="" disabled>
             Segmento
           </option>
 
-          <option value="industria">Indústria</option>
-          <option value="servicos">Serviços</option>
-          <option value="educacao">Educação</option>
-          <option value="saude">Saúde</option>
-          <option value="outros">Outros</option>
+          <option value="hospital">
+            Hospital
+          </option>
+
+          <option value="distribuidora-medicamentos">
+            Distribuidora de medicamentos
+          </option>
+
+          <option value="industria-farmaceutica">
+            Indústria farmacêutica
+          </option>
+
+          <option value="produtos-equipamentos-medicos">
+            Produtos e equipamentos médicos
+          </option>
+
+          <option value="outros">
+            Outros
+          </option>
         </select>
       </div>
 
@@ -147,7 +157,7 @@ export default function FormularioConsultoria() {
           name="outroSegmento"
           placeholder="Informe seu segmento"
           required
-          className="h-[38px] w-full rounded-[3px] border border-black/15 px-3 text-[11px] outline-none transition focus:border-[#49c7a9]"
+          className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
         />
       )}
 
@@ -156,21 +166,24 @@ export default function FormularioConsultoria() {
           type="checkbox"
           name="consentimentoLGPD"
           required
-          className="mt-[2px] h-3.5 w-3.5 shrink-0 accent-[#49c7a9]"
+          className="mt-[2px] h-3.5 w-3.5 shrink-0 accent-[#4EAED4]"
         />
 
         <span>
-          Li e concordo com o tratamento dos meus dados para contato sobre
-          esta ação do Vitora.
+          Concordo com o uso dos meus dados para
+          contato comercial, conforme a Política de
+          Privacidade.
         </span>
       </label>
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-3 h-[40px] w-full rounded-full bg-[#49c7a9] px-6 text-[11px] font-bold uppercase tracking-[0.04em] text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-3 h-[44px] w-full rounded-full bg-[#4EAED4] px-6 text-[11px] font-bold uppercase tracking-[0.05em] text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "loading" ? "Enviando..." : "Quero participar"}
+        {status === "loading"
+          ? "Enviando..."
+          : "Solicitar proposta"}
       </button>
 
       {mensagem && (
