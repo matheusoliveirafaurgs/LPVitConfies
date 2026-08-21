@@ -79,77 +79,6 @@ const saudeStructuredData = {
   url: "https://lp.vitora.com.br/saude",
 };
 
-const BENEFICIOS = [
-  {
-    titulo: "Processos padronizados",
-    texto:
-      "Mantenha rotinas, procedimentos e informações organizados e acessíveis para as equipes.",
-  },
-  {
-    titulo: "Rastreabilidade de ponta a ponta",
-    texto:
-      "Acompanhe alterações, aprovações, registros e responsáveis ao longo de todo o processo.",
-  },
-  {
-    titulo: "Gestão de não conformidades",
-    texto:
-      "Identifique desvios, investigue causas e acompanhe planos de ação em um único ambiente.",
-  },
-  {
-    titulo: "Visão em tempo real",
-    texto:
-      "Monitore indicadores críticos e acompanhe o desempenho da operação com mais clareza.",
-  },
-];
-
-const FUNCIONALIDADES = [
-  {
-    titulo: "Gestão de Auditoria",
-    texto:
-      "Auditorias internas e externas com rastreabilidade para ISO 9001, ANVISA e acreditações.",
-  },
-  {
-    titulo: "Indicadores & Dashboards",
-    texto:
-      "Acompanhe KPIs críticos, não conformidades e indicadores de qualidade em tempo real.",
-  },
-  {
-    titulo: "Gestão de Documentos",
-    texto:
-      "Controle POPs, protocolos, bulas e registros com revisão, aprovação e vigência.",
-  },
-  {
-    titulo: "Alerta de Incidente",
-    texto:
-      "Registre eventos adversos, quase-erros e desvios com rapidez e rastreabilidade.",
-  },
-  {
-    titulo: "Relatório de Incidentes",
-    texto:
-      "Estruture investigações, análise de causa-raiz e planos de ação preventivos.",
-  },
-  {
-    titulo: "Gestão de Checklist",
-    texto:
-      "Digitalize inspeções, rotinas operacionais e verificações de conformidade.",
-  },
-  {
-    titulo: "Gestão de Fornecedores",
-    texto:
-      "Qualifique, avalie e monitore continuamente fornecedores considerados críticos.",
-  },
-  {
-    titulo: "Planejamento Estratégico",
-    texto:
-      "Conecte metas, indicadores e objetivos da qualidade em um único ambiente.",
-  },
-  {
-    titulo: "Ata de Reunião",
-    texto:
-      "Formalize reuniões, decisões, responsáveis e ações de acompanhamento.",
-  },
-];
-
 const SEGMENTOS = [
   {
     titulo: "Hospitais",
@@ -182,20 +111,6 @@ const CONFORMIDADE = [
   "Conformidade ANVISA",
   "Auditorias internas",
 ];
-
-function IconeCheck() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-5 w-5">
-      <path
-        d="M5 12.5l4 4L19 7"
-        stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  );
-}
 
 function IconeInstagram(props) {
   return (
@@ -245,24 +160,65 @@ export default function SaudePage() {
           id="contato"
           className="relative overflow-hidden bg-[#071A24] text-white"
         >
-          <div className="absolute inset-0 bg-gradient-to-br from-[#071A24] via-[#0B2633] to-[#123B4A]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#071A24]/95 via-[#071A24]/65 to-[#071A24]/45 sm:from-[#071A24]/95 sm:via-[#071A24]/40 sm:to-[#071A24]/78">
+            <Image
+              src="/saude/hero-saude.jpg"
+              alt="Profissional da área da saúde em ambiente hospitalar"
+              fill
+              priority
+              sizes="100vw"
+              className="
+    object-cover
+    object-[58%_center]
+    sm:object-center
+  "
+            />
 
-          <div className="relative mx-auto grid min-h-[680px] w-full max-w-[1180px] gap-12 px-6 py-8 sm:px-8 lg:grid-cols-[1fr_0.82fr] lg:items-center lg:gap-16 lg:px-12 lg:py-14">
-            <div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#071A24]/95 via-[#071A24]/40 to-[#071A24]/78" />
+          </div>
+
+          <div
+            className="
+  relative
+  mx-auto
+  grid
+  w-full
+  max-w-[1440px]
+  gap-8
+  px-6
+  pb-10
+  pt-8
+
+  sm:px-8
+  sm:pb-12
+
+  lg:min-h-[680px]
+  lg:grid-cols-[1.05fr_0.78fr]
+  lg:items-center
+  lg:gap-24
+  lg:px-10
+  lg:py-14
+
+  xl:px-6
+"
+          >
+            <div className="lg:-ml-8 lg:-mt-4 xl:-ml-16">
               <Image
                 src="/landing-v2/logo-vitora-branco.png"
                 alt="Vitora"
                 width={209}
                 height={40}
                 priority
-                className="h-auto w-[120px] sm:w-[135px]"
+                className="h-auto w-[105px] sm:w-[120px] lg:w-[135px]"
               />
 
-              <p className="mt-16 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90 backdrop-blur-sm">
+              <p className="mt-10 inline-flex rounded-full border border-white/20 bg-white/10 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.12em] text-white/90 backdrop-blur-sm">
                 Gestão da Qualidade para a Área da Saúde
               </p>
 
-              <h1 className="mt-6 max-w-[620px] text-[34px] font-extrabold uppercase leading-[1.04] tracking-[-0.02em] sm:text-[44px] lg:text-[56px]">
+              <h1
+                className="mt-5 max-w-[560px] text-[31px] font-extrabold uppercase leading-[1.03] tracking-[-0.02em] sm:text-[40px] lg:text-[56px]"
+              >
                 Na saúde,
                 <br />
                 não há margem
@@ -270,19 +226,19 @@ export default function SaudePage() {
                 para erros.
               </h1>
 
-              <p className="mt-6 max-w-[570px] text-[15px] leading-[1.7] text-white/78 sm:text-[16px]">
+              <p className="mt-5 max-w-[540px] text-[14px] leading-[1.65] text-white/85 sm:text-[16px]">
                 Centralize documentos, auditorias, indicadores, fornecedores e
                 ocorrências em uma única plataforma preparada para ambientes
                 regulados e operações que exigem rastreabilidade.
               </p>
             </div>
 
-            <div className="rounded-[24px] bg-white p-6 text-[#161614] shadow-2xl sm:p-8 lg:p-9">
+            <div className="w-full max-w-[540px] rounded-[20px] bg-white p-5 text-[#161614] shadow-2xl sm:p-7 lg:-translate-y-4 lg:translate-x-10 lg:rounded[24px] lg:p-9 ">
               <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#4EAED4]">
                 Fale com um especialista
               </p>
 
-              <h2 className="mt-3 text-[25px] font-extrabold leading-[1.1] sm:text-[29px]">
+              <h2 className="mt-3 text-[23px] font-extrabold leading-[1.08] sm:text-[27px] lg:text-[29px]">
                 Descubra como o Vitora pode estruturar sua gestão da qualidade.
               </h2>
 
@@ -297,114 +253,8 @@ export default function SaudePage() {
           </div>
         </section>
 
-        {/* NÚMEROS */}
-        <section className="border-b border-black/5 bg-white">
-          <div className="mx-auto grid max-w-[980px] grid-cols-1 gap-8 px-6 py-10 text-center sm:grid-cols-3 sm:px-8 sm:py-12">
-            <div>
-              <strong className="text-[38px] font-extrabold text-[#4EAED4] sm:text-[46px]">
-                +12 mil
-              </strong>
-
-              <p className="mt-1 text-[13px] text-black/60">usuários</p>
-            </div>
-
-            <div>
-              <strong className="text-[38px] font-extrabold text-[#4EAED4] sm:text-[46px]">
-                +10
-              </strong>
-
-              <p className="mt-1 text-[13px] text-black/60">países</p>
-            </div>
-
-            <div>
-              <strong className="text-[38px] font-extrabold text-[#4EAED4] sm:text-[46px]">
-                +98%
-              </strong>
-
-              <p className="mt-1 text-[13px] text-black/60">de satisfação</p>
-            </div>
-          </div>
-        </section>
-
-        {/* BENEFÍCIOS */}
-        <section className="bg-[#F5F7F8] py-16 sm:py-20">
-          <div className="mx-auto max-w-[1100px] px-6 sm:px-8">
-            <div className="mx-auto max-w-[760px] text-center">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4EAED4]">
-                Gestão da qualidade para saúde
-              </p>
-
-              <h2 className="mt-4 text-[30px] font-extrabold uppercase leading-[1.08] sm:text-[38px]">
-                Mais controle. Mais rastreabilidade. Menos risco.
-              </h2>
-
-              <p className="mx-auto mt-5 max-w-[680px] text-[14px] leading-[1.7] text-black/65 sm:text-[15px]">
-                O Vitora conecta informações, processos e equipes para tornar a
-                gestão da qualidade mais segura, rastreável e eficiente.
-              </p>
-            </div>
-
-            <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-              {BENEFICIOS.map((beneficio) => (
-                <article
-                  key={beneficio.titulo}
-                  className="rounded-[18px] border border-black/5 bg-white p-6"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E5F5FB] text-[#278EB8]">
-                    <IconeCheck />
-                  </div>
-
-                  <h3 className="mt-5 text-[16px] font-bold leading-[1.25]">
-                    {beneficio.titulo}
-                  </h3>
-
-                  <p className="mt-3 text-[13px] leading-[1.65] text-black/60">
-                    {beneficio.texto}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* FUNCIONALIDADES */}
-        <section className="bg-white py-16 sm:py-20 lg:py-24">
-          <div className="mx-auto max-w-[1100px] px-6 sm:px-8">
-            <div className="max-w-[760px]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4EAED4]">
-                Tudo em um só lugar
-              </p>
-
-              <h2 className="mt-4 text-[30px] font-extrabold uppercase leading-[1.08] sm:text-[38px]">
-                Controle documentos, indicadores, auditorias e muito mais
-              </h2>
-            </div>
-
-            <div className="mt-12 grid gap-x-8 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-              {FUNCIONALIDADES.map((item, index) => (
-                <article
-                  key={item.titulo}
-                  className="group rounded-[18px] border border-[#E4E8EA] p-6 transition-all duration-200 hover:-translate-y-1 hover:border-[#4EAED4]/60 hover:shadow-lg"
-                >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E5F5FB] text-[13px] font-extrabold text-[#278EB8]">
-                    {String(index + 1).padStart(2, "0")}
-                  </div>
-
-                  <h3 className="mt-5 text-[17px] font-bold">{item.titulo}</h3>
-
-                  <p className="mt-3 text-[13px] leading-[1.7] text-black/60">
-                    {item.texto}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* SEGMENTOS */}
-        <section className="relative overflow-hidden bg-[#F5F7F8] py-16 sm:py-20 lg:py-24">
-          
-
+        <section className="relative overflow-hidden bg-[#F5F7F8] py-14 sm:py-20 lg:py-24">
           <div className="relative mx-auto max-w-[1100px] px-6 sm:px-8">
             <div className="mx-auto max-w-[760px] text-center">
               <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4EAED4]">
@@ -435,26 +285,6 @@ export default function SaudePage() {
           </div>
         </section>
 
-        {/* CONFORMIDADE */}
-        <section className="bg-[#071A24] py-14 text-white sm:py-16">
-          <div className="mx-auto max-w-[1100px] px-6 text-center sm:px-8">
-            <h2 className="text-[25px] font-extrabold uppercase leading-[1.1] sm:text-[31px]">
-              Preparado para ambientes que exigem controle e conformidade
-            </h2>
-
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              {CONFORMIDADE.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-white/20 bg-white/5 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-white/80"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* CTA FINAL */}
         <section className="bg-[#4EAED4] px-6 py-16 text-white sm:py-20">
           <div className="mx-auto max-w-[820px] text-center">
@@ -469,7 +299,7 @@ export default function SaudePage() {
 
             <Link
               href="#contato"
-              className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#161614] px-8 text-[13px] font-bold uppercase tracking-[0.08em] text-white transition-transform hover:-translate-y-0.5"
+              className="mt-8 inline-flex min-h-[48px] items-center justify-center rounded-full bg-[#161614] px-6 text-[12px] font-bold uppercase tracking-[0.06em] text-white transition-transform hover:-translate-y-0.5 sm:px-8 sm:text-[13px]"
             >
               Quero conhecer o Vitora
             </Link>

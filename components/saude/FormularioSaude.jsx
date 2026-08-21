@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 
-const WEBHOOK_URL =
-  "https://n8n.vitora.com.br/webhook/vit/lead-confies";
+const WEBHOOK_URL = "https://n8n.vitora.com.br/webhook/vit/lead-confies";
 
 export default function FormularioSaude() {
   const [segmento, setSegmento] = useState("");
@@ -14,6 +13,8 @@ export default function FormularioSaude() {
 
   async function handleSubmit(event) {
     event.preventDefault();
+
+    const form = event.currentTarget;
 
     setStatus("loading");
     setMensagem("");
@@ -35,8 +36,7 @@ export default function FormularioSaude() {
       segmento,
       outroSegmento,
 
-      consentimentoLGPD:
-        formData.get("consentimentoLGPD") === "on",
+      consentimentoLGPD: formData.get("consentimentoLGPD") === "on",
 
       consentimentoVersao: "saude-2026-08",
       eventoOrigem: "LP Saúde",
@@ -57,29 +57,23 @@ export default function FormularioSaude() {
 
       setStatus("success");
       setMensagem(
-        "Solicitação enviada com sucesso. Em breve, a equipe do Vitora entrará em contato."
+        "Solicitação enviada com sucesso. Em breve, a equipe do Vitora entrará em contato.",
       );
 
-      event.currentTarget.reset();
+      form.reset();
       setSegmento("");
     } catch (error) {
-      console.error(
-        "Erro ao enviar formulário da LP Saúde:",
-        error
-      );
+      console.error("Erro ao enviar formulário da LP Saúde:", error);
 
       setStatus("error");
       setMensagem(
-        "Não foi possível enviar sua solicitação agora. Tente novamente em alguns instantes."
+        "Não foi possível enviar sua solicitação agora. Tente novamente em alguns instantes.",
       );
     }
   }
 
   return (
-    <form
-      className="mt-5 space-y-2.5"
-      onSubmit={handleSubmit}
-    >
+    <form className="mt-5 space-y-2.5" onSubmit={handleSubmit}>
       <input
         type="text"
         name="nome"
@@ -119,9 +113,7 @@ export default function FormularioSaude() {
         <select
           name="segmento"
           value={segmento}
-          onChange={(event) =>
-            setSegmento(event.target.value)
-          }
+          onChange={(event) => setSegmento(event.target.value)}
           required
           className="h-[42px] w-full rounded-[5px] border border-black/15 bg-white px-3 text-[12px] text-black/60 outline-none transition focus:border-[#4EAED4]"
         >
@@ -129,25 +121,19 @@ export default function FormularioSaude() {
             Segmento
           </option>
 
-          <option value="hospital">
-            Hospital
-          </option>
+          <option value="hospital">Hospital</option>
 
           <option value="distribuidora-medicamentos">
             Distribuidora de medicamentos
           </option>
 
-          <option value="industria-farmaceutica">
-            Indústria farmacêutica
-          </option>
+          <option value="industria-farmaceutica">Indústria farmacêutica</option>
 
           <option value="produtos-equipamentos-medicos">
             Produtos e equipamentos médicos
           </option>
 
-          <option value="outros">
-            Outros
-          </option>
+          <option value="outros">Outros</option>
         </select>
       </div>
 
@@ -170,9 +156,8 @@ export default function FormularioSaude() {
         />
 
         <span>
-          Concordo com o uso dos meus dados para
-          contato comercial, conforme a Política de
-          Privacidade.
+          Concordo com o uso dos meus dados para contato comercial, conforme a
+          Política de Privacidade.
         </span>
       </label>
 
@@ -181,17 +166,13 @@ export default function FormularioSaude() {
         disabled={status === "loading"}
         className="mt-3 h-[44px] w-full rounded-full bg-[#4EAED4] px-6 text-[11px] font-bold uppercase tracking-[0.05em] text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "loading"
-          ? "Enviando..."
-          : "Solicitar proposta"}
+        {status === "loading" ? "Enviando..." : "Solicitar proposta"}
       </button>
 
       {mensagem && (
         <p
           className={`pt-2 text-center text-[11px] leading-relaxed ${
-            status === "success"
-              ? "text-[#258f75]"
-              : "text-red-600"
+            status === "success" ? "text-[#258f75]" : "text-red-600"
           }`}
         >
           {mensagem}

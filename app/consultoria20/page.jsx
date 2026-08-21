@@ -161,14 +161,14 @@ export default function Consultoria20Page() {
                   left-5
                   top-5
                   h-auto
-                  w-[100px]
+                  w-[120px]
 
                   sm:left-8
                   sm:top-7
-                  sm:w-[115px]
+                  sm:w-[135px]
 
                   lg:top-8
-                  lg:w-[125px]
+                  lg:w-[155px]
                 "
               />
 
@@ -233,34 +233,29 @@ export default function Consultoria20Page() {
         {/* TEXTO + FORMULÁRIO */}
         <section className="w-full bg-[#00141d] text-white">
           <div className="mx-auto grid w-full max-w-[1180px] lg:grid-cols-[44%_56%]">
+            {/* TEXTO ESQUERDO */}
             <div
               className="
-                flex
-                items-center
-                px-6
-                py-10
-
-                sm:px-8
-                sm:py-12
-
-                lg:min-h-[320px]
-                lg:px-12
-              "
+              flex
+              items-center
+              px-6
+              py-10
+              sm:px-8
+              sm:py-12
+              lg:min-h-[420px]
+              lg:px-12"
             >
               <p
                 className="
-                  mx-auto
-                  max-w-[420px]
-                  text-[20px]
-                  font-normal
-                  leading-[1.35]
-
-                  sm:text-[22px]
-
-                  lg:mx-0
-                  lg:max-w-[330px]
-                  lg:text-[21px]
-                "
+                mx-auto
+                max-w-[420px]
+                text-[21px]
+                font-normal
+                leading-[1.4]
+                sm:text-[23px]
+                lg:mx-0
+                lg:max-w-[360px]
+                lg:text-[23px]"
               >
                 Uma oportunidade para{" "}
                 <strong className="font-bold">identificar</strong> melhorias,{" "}
@@ -271,32 +266,53 @@ export default function Consultoria20Page() {
               </p>
             </div>
 
+            {/* FORMULÁRIO */}
             <div
               id="cadastro"
               className="
-                scroll-mt-6
-                bg-white
-                px-6
-                py-8
-                text-black
-
-                sm:px-8
-                sm:py-9
-
-                lg:min-h-[320px]
-                lg:rounded-t-[36px]
-                lg:px-[48px]
-              "
+              relative
+              bg-white
+              px-6
+              py-9
+              text-black
+              sm:px-8
+              sm:py-10
+              lg:-mt-[150px]
+              lg:min-h-[570px]
+              lg:rounded-t-[36px]
+              lg:px-[48px]
+              lg:py-0"
             >
-              <h2 className="text-[28px] font-extrabold uppercase leading-[1.02] sm:text-[30px]">
-                Cadastre-se
-                <br />
-                para
-                <br />
-                participar
-              </h2>
+              <div
+                className="
+                relative
+                z-10
+                flex
+                h-full
+                min-h-[500px]
+                flex-col
+                justify-center
+                lg:min-h-[570px]"
+              >
+                <div className="w-full">
+                  <h2 className="text-[29px] font-extrabold uppercase leading-[1.02] sm:text-[31px] lg:text-[34px]">
+                    Cadastre-se
+                    <br />
+                    para
+                    <br />
+                    participar
+                  </h2>
 
-              <FormularioConsultoria />
+                  <p className="mt-4 max-w-[470px] text-[13px] leading-[1.6] text-black/60 sm:text-[14px]">
+                    Preencha seus dados para participar da seleção e receber
+                    mais informações sobre a consultoria.
+                  </p>
+
+                  <div className="mt-7">
+                    <FormularioConsultoria />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -311,12 +327,9 @@ export default function Consultoria20Page() {
               max-w-[1040px]
               gap-8
               px-6
-
               sm:px-8
-
               lg:grid-cols-[42%_58%]
-              lg:gap-10
-            "
+              lg:gap-10"
           >
             <div className="flex items-center">
               <h2 className="text-[30px] font-extrabold uppercase leading-[1.05] sm:text-[32px] lg:text-[36px]">
@@ -359,12 +372,10 @@ export default function Consultoria20Page() {
             bg-black
             py-12
             text-white
-
             sm:min-h-[280px]
             lg:h-[320px]
             lg:min-h-0
-            lg:py-0
-          "
+            lg:py-0"
         >
           <Image
             src="/consultoria20/consultoria-bg.png"
