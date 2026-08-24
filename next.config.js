@@ -2,6 +2,7 @@
 module.exports = {
   reactStrictMode: true,
   output: "standalone",
+  poweredByHeader: false,
 
   async redirects() {
     return [
@@ -36,8 +37,19 @@ module.exports = {
               "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
           },
           {
-            key: "Strict-Transport-Security",
-            value: "max-age=31536000; includeSubDomains",
+            key: "Content-Security-Policy-Report-Only",
+            value: [
+              "default-src 'self'",
+              "base-uri 'self'",
+              "object-src 'none'",
+              "frame-ancestors 'self'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+              "style-src 'self' 'unsafe-inline'",
+              "img-src 'self' data: blob:",
+              "font-src 'self' data:",
+              "connect-src 'self' https://n8n.vitora.com.br",
+              "form-action 'self'",
+            ].join("; "),
           },
         ],
       },

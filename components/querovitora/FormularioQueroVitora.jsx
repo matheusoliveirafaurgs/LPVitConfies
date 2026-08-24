@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 const WEBHOOK_URL =
-  "https://n8n.vitora.com.br/webhook/vit/lead-confies";
+  "https://n8n.vitora.com.br/webhook/vit/lead-padrao";
 
 const TRACKING_KEYS = [
   "utm_source",
@@ -116,8 +116,6 @@ export default function FormularioQueroVitora() {
         formData.get("consentimento") === "on",
 
       consentimentoVersao: "lp-padrao-2026-08",
-
-      eventoOrigem: "LP Padrão",
 
       ...tracking,
     };

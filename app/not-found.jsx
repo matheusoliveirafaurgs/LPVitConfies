@@ -35,7 +35,7 @@ export default function NotFound() {
         </p>
 
         <Link
-          href="/vitreuniao"
+          href="/querovitora"
           className="mt-8 inline-flex min-h-[46px] items-center justify-center rounded-[6px] bg-[#161614] px-6 text-[13px] font-semibold text-white transition-opacity hover:opacity-85"
         >
           Conhecer a Vit

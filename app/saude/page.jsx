@@ -252,7 +252,7 @@ export default function SaudePage() {
             </div>
 
             <div className="w-full max-w-[540px] rounded-[20px] bg-white p-5 text-[#161614] shadow-2xl sm:p-7 lg:-translate-y-4 lg:translate-x-10 lg:rounded-[24px] lg:p-9">
-              <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#4EAED4]">
+              <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#1B456A]">
                 Fale com um especialista
               </p>
 
@@ -275,7 +275,7 @@ export default function SaudePage() {
         <section className="relative overflow-hidden bg-[#F5F7F8] py-14 sm:py-20 lg:py-24">
           <div className="relative mx-auto max-w-[1100px] px-6 sm:px-8">
             <div className="mx-auto max-w-[760px] text-center">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#4EAED4]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[#1B456A]">
                 Para quem é o Vitora
               </p>
 

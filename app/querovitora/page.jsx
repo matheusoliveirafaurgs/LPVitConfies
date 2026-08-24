@@ -43,7 +43,7 @@ export const metadata = {
   },
 
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "Software de Gestão QSMS | Vitora",
     description:
       "Centralize os principais processos de QSMS em uma única plataforma.",
@@ -532,7 +532,7 @@ export default function QueroVitoraPage() {
           <div className="mx-auto w-full max-w-[1240px]">
             <div className="grid gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#4D82A3]">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1B456A]">
                   Plataforma integrada
                 </p>
 
@@ -550,7 +550,7 @@ export default function QueroVitoraPage() {
                   estruturar processos e acompanhar a gestão com mais clareza.
                 </p>
 
-                <p className="mt-4 text-[13px] leading-[1.75] text-black/45">
+                <p className="mt-4 text-[13px] leading-[1.75] text-black/65">
                   Menos controles dispersos. Mais rastreabilidade, padronização
                   e visibilidade para sua operação.
                 </p>
@@ -593,7 +593,7 @@ export default function QueroVitoraPage() {
                     }
                   `}
                 >
-                  <span className="text-[16px] font-extrabold leading-none text-[#4D82A3]">
+                  <span className="text-[16px] font-extrabold leading-none text-[#1B456A]">
                     {item.numero}
                   </span>
 
@@ -601,7 +601,7 @@ export default function QueroVitoraPage() {
                     {item.titulo}
                   </h3>
 
-                  <p className="mt-3 max-w-[310px] text-[13px] leading-[1.7] text-black/50">
+                  <p className="mt-3 max-w-[310px] text-[13px] leading-[1.7] text-black/65">
                     {item.texto}
                   </p>
                 </article>
@@ -621,7 +621,7 @@ export default function QueroVitoraPage() {
           <div className="mx-auto w-full max-w-[1240px]">
             <div className="grid gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#4D82A3]">
+                <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#1B456A]">
                   Segmentos de atuação
                 </p>
 
@@ -662,7 +662,7 @@ export default function QueroVitoraPage() {
                     ${index === 4 ? "sm:col-span-2 lg:col-span-1" : ""}
                   `}
                 >
-                  <span className="text-[16px] font-extrabold leading-none text-[#4D82A3]">
+                  <span className="text-[16px] font-extrabold leading-none text-[#1B456A]">
                     {segmento.numero}
                   </span>
 

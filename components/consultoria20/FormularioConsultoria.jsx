@@ -3,7 +3,7 @@
 import { useState } from "react";
 
 const WEBHOOK_URL =
-  "https://n8n.vitora.com.br/webhook/vit/lead-confies";
+  "https://n8n.vitora.com.br/webhook/vit/lead-consultoria";
 
 export default function FormularioConsultoria() {
   const [segmento, setSegmento] = useState("");
@@ -38,7 +38,6 @@ export default function FormularioConsultoria() {
 
       consentimentoLGPD: formData.get("consentimentoLGPD") === "on",
       consentimentoVersao: "consultoria20-2026-08",
-      eventoOrigem: "LP Consultoria",
     };
 
     try {

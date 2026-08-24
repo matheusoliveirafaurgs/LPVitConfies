@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 
-const WEBHOOK_URL =
-  "https://n8n.vitora.com.br/webhook/vit/lead-confies";
+const WEBHOOK_URL = "https://n8n.vitora.com.br/webhook/vit/lead-saude";
 
 const TRACKING_KEYS = [
   "utm_source",
@@ -115,12 +114,11 @@ export default function FormularioSaude() {
 
       outroSegmento,
 
-      consentimentoLGPD:
-        formData.get("consentimentoLGPD") === "on",
+      consentimentoLGPD: formData.get("consentimentoLGPD") === "on",
 
       consentimentoVersao: "saude-2026-08",
 
-      eventoOrigem: "LP Saúde",
+      
 
       ...tracking,
     };
@@ -160,10 +158,7 @@ export default function FormularioSaude() {
       form.reset();
       setSegmento("");
     } catch (error) {
-      console.error(
-        "Erro ao enviar formulário da LP Saúde:",
-        error,
-      );
+      console.error("Erro ao enviar formulário da LP Saúde:", error);
 
       setStatus("error");
 
@@ -185,9 +180,7 @@ export default function FormularioSaude() {
         aria-hidden="true"
         className="absolute -left-[9999px] h-px w-px overflow-hidden"
       >
-        <label htmlFor="website">
-          Website
-        </label>
+        <label htmlFor="website">Website</label>
 
         <input
           id="website"
@@ -206,7 +199,7 @@ export default function FormularioSaude() {
         required
         minLength={2}
         maxLength={120}
-        className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
+        className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#1B456A]"
       />
 
       <input
@@ -216,7 +209,7 @@ export default function FormularioSaude() {
         autoComplete="email"
         required
         maxLength={180}
-        className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
+        className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#1B456A]"
       />
 
       <input
@@ -227,7 +220,7 @@ export default function FormularioSaude() {
         required
         minLength={2}
         maxLength={160}
-        className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
+        className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#1B456A]"
       />
 
       <div className="grid gap-2.5 sm:grid-cols-2">
@@ -239,39 +232,38 @@ export default function FormularioSaude() {
           required
           minLength={8}
           maxLength={40}
-          className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
+          className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#1B456A]"
         />
 
+        <label htmlFor="segmento" className="sr-only">
+          Segmento
+        </label>
+
         <select
+          id="segmento"
           name="segmento"
           value={segmento}
           onChange={(event) => setSegmento(event.target.value)}
           required
-          className="h-[42px] w-full rounded-[5px] border border-black/15 bg-white px-3 text-[12px] text-black/60 outline-none transition focus:border-[#4EAED4]"
+          className="h-[42px] w-full rounded-[5px] border border-black/15 bg-white px-3 text-[12px] text-black/70 outline-none transition focus:border-[#1B456A]"
         >
           <option value="" disabled>
             Segmento
           </option>
 
-          <option value="hospital">
-            Hospital
-          </option>
+          <option value="hospital">Hospital</option>
 
           <option value="distribuidora-medicamentos">
             Distribuidora de medicamentos
           </option>
 
-          <option value="industria-farmaceutica">
-            Indústria farmacêutica
-          </option>
+          <option value="industria-farmaceutica">Indústria farmacêutica</option>
 
           <option value="produtos-equipamentos-medicos">
             Produtos e equipamentos médicos
           </option>
 
-          <option value="outros">
-            Outros
-          </option>
+          <option value="outros">Outros</option>
         </select>
       </div>
 
@@ -283,11 +275,11 @@ export default function FormularioSaude() {
           required
           minLength={2}
           maxLength={120}
-          className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#4EAED4]"
+          className="h-[42px] w-full rounded-[5px] border border-black/15 px-3 text-[12px] outline-none transition focus:border-[#1B456A]"
         />
       )}
 
-      <label className="flex cursor-pointer items-start gap-2 pt-2 text-[10px] leading-[1.45] text-black/60 sm:text-[11px]">
+      <label className="flex cursor-pointer items-start gap-2 pt-2 text-[10px] leading-[1.45] text-black/75 sm:text-[11px]">
         <input
           type="checkbox"
           name="consentimentoLGPD"
@@ -296,31 +288,24 @@ export default function FormularioSaude() {
         />
 
         <span>
-          Concordo com o uso dos meus dados para contato comercial,
-          conforme a Política de Privacidade.
+          Concordo com o uso dos meus dados para contato comercial, conforme a
+          Política de Privacidade.
         </span>
       </label>
 
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-3 h-[44px] w-full rounded-full bg-[#4EAED4] px-6 text-[11px] font-bold uppercase tracking-[0.05em] text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
+        className="mt-3 h-[44px] w-full rounded-full bg-[#1B456A] px-6 text-[11px] font-bold uppercase tracking-[0.05em] text-white transition hover:brightness-95 disabled:cursor-not-allowed disabled:opacity-60"
       >
-        {status === "loading"
-          ? "Enviando..."
-          : "Solicitar proposta"}
+        {status === "loading" ? "Enviando..." : "Solicitar proposta"}
       </button>
 
-      <div
-        aria-live="polite"
-        aria-atomic="true"
-      >
+      <div aria-live="polite" aria-atomic="true">
         {mensagem && (
           <p
             className={`pt-2 text-center text-[11px] leading-relaxed ${
-              status === "success"
-                ? "text-[#258f75]"
-                : "text-red-600"
+              status === "success" ? "text-[#258f75]" : "text-red-600"
             }`}
           >
             {mensagem}

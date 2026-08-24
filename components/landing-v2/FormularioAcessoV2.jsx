@@ -190,7 +190,7 @@ export default function FormularioAcessoV2() {
             consentimentoVersao:
               "landing-v2-2026-08",
 
-            eventoOrigem: "LP Vit Reunião"
+            
           }),
         }
       );
