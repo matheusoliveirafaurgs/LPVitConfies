@@ -41,11 +41,7 @@ const MODULOS = [
     titulo: "Gestão de Incidentes",
     texto:
       "Registre ocorrências, investigue causas e acompanhe ações para fortalecer prevenção e aprendizado organizacional.",
-    recursos: [
-      "Registro de ocorrências",
-      "Análise de causa",
-      "Planos de ação",
-    ],
+    recursos: ["Registro de ocorrências", "Análise de causa", "Planos de ação"],
   },
   {
     nome: "Fornecedores",
@@ -93,6 +89,128 @@ const MODULOS = [
   },
 ];
 
+function GrafismoModulos() {
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+    >
+      {/* textura bem sutil */}
+      <div
+        className="absolute inset-0 opacity-[0.035]"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(146,178,200,0.10) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(146,178,200,0.10) 1px, transparent 1px)
+          `,
+          backgroundSize: "72px 72px",
+        }}
+      />
+
+      {/* profundidade central */}
+      <div className="absolute left-1/2 top-1/2 h-[360px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#1B456A]/[0.045] blur-[130px]" />
+
+      {/* grafismo esquerdo - menor e mais afastado */}
+      <div className="absolute bottom-[44px] left-[-82px] hidden h-[250px] w-[190px] lg:block">
+        <svg
+          viewBox="0 0 190 250"
+          fill="none"
+          className="h-full w-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="
+              M0 210
+              H42
+              C74 210 92 192 92 160
+              V118
+              C92 88 108 72 136 72
+              H190
+            "
+            stroke="#4D82A3"
+            strokeWidth="1.6"
+            opacity="0.23"
+          />
+
+          <path
+            d="
+              M0 248
+              H28
+              C58 248 74 232 74 202
+              V154
+              C74 118 94 98 128 98
+              H170
+            "
+            stroke="#92B2C8"
+            strokeWidth="1.4"
+            opacity="0.15"
+          />
+
+          <circle cx="92" cy="160" r="2.5" fill="#92B2C8" opacity="0.45" />
+
+          <circle cx="74" cy="202" r="2.5" fill="#4D82A3" opacity="0.35" />
+        </svg>
+      </div>
+
+      {/* grafismo direito - mais alto */}
+      <div className="absolute right-[-22px] top-[38px] hidden h-[300px] w-[175px] lg:block">
+        <svg
+          viewBox="0 0 175 300"
+          fill="none"
+          className="h-full w-full"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="
+              M175 0
+              H132
+              C98 0 80 18 80 52
+              V96
+              C80 126 64 144 36 144
+              H0
+            "
+            stroke="#92B2C8"
+            strokeWidth="1.6"
+            opacity="0.24"
+          />
+
+          <path
+            d="
+              M175 28
+              H146
+              C114 28 98 44 98 76
+              V125
+              C98 159 80 177 48 177
+              H0
+            "
+            stroke="#4D82A3"
+            strokeWidth="1.4"
+            opacity="0.17"
+          />
+
+          <path
+            d="
+              M175 152
+              H130
+              C98 152 82 168 82 200
+              V244
+              C82 274 64 292 32 292
+              H0
+            "
+            stroke="#1B456A"
+            strokeWidth="1.4"
+            opacity="0.22"
+          />
+
+          <circle cx="80" cy="52" r="2.5" fill="#92B2C8" opacity="0.48" />
+
+          <circle cx="98" cy="125" r="2.5" fill="#4D82A3" opacity="0.38" />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
 export default function ModulosQueroVitora() {
   const [ativo, setAtivo] = useState(0);
 
@@ -101,24 +219,33 @@ export default function ModulosQueroVitora() {
   return (
     <section
       id="modulos"
-      className="relative overflow-hidden bg-[#071116] px-6 py-20 text-white sm:px-8 lg:py-28"
+      className="relative overflow-hidden bg-[#161614] px-6 py-20 text-white sm:px-8 lg:py-24"
     >
-      <div className="absolute left-[-160px] top-[180px] h-[420px] w-[420px] rounded-full bg-[#1F7196]/10 blur-[120px]" />
+      <GrafismoModulos />
 
-      <div className="relative mx-auto max-w-[1240px]">
-        <div className="max-w-[760px]">
-          <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#79C5E4]">
-            Tudo que sua gestão precisa
+      <div className="relative z-10 mx-auto w-full max-w-[1240px]">
+        {/* CABEÇALHO */}
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#92B2C8]">
+              Tudo que sua gestão precisa
+            </p>
+
+            <h2 className="mt-4 max-w-[620px] text-[34px] font-extrabold leading-[1.03] tracking-[-0.03em] sm:text-[42px] lg:text-[48px]">
+              Uma plataforma.
+              <br />
+              Múltiplas possibilidades.
+            </h2>
+          </div>
+
+          <p className="max-w-[590px] text-[14px] leading-[1.75] text-white/52 lg:justify-self-end">
+            Diferentes processos da gestão conectados em um mesmo ambiente para
+            reduzir controles dispersos e ampliar a rastreabilidade da operação.
           </p>
-
-          <h2 className="mt-4 text-[34px] font-extrabold leading-[1.03] tracking-[-0.03em] sm:text-[42px] lg:text-[50px]">
-            Uma plataforma.
-            <br />
-            Múltiplas possibilidades.
-          </h2>
         </div>
 
-        <div className="mt-12 flex gap-2 overflow-x-auto pb-4">
+        {/* ABAS */}
+        <div className="mt-10 flex gap-2 overflow-x-auto pb-3">
           {MODULOS.map((item, index) => (
             <button
               key={item.nome}
@@ -128,7 +255,7 @@ export default function ModulosQueroVitora() {
                 shrink-0
                 rounded-full
                 border
-                px-5
+                px-4
                 py-2.5
                 text-[10px]
                 font-bold
@@ -138,8 +265,8 @@ export default function ModulosQueroVitora() {
 
                 ${
                   ativo === index
-                    ? "border-[#79C5E4] bg-[#79C5E4] text-[#071116]"
-                    : "border-white/10 bg-white/[0.025] text-white/45 hover:border-white/25 hover:text-white"
+                    ? "border-white bg-white text-[#161614]"
+                    : "border-white/15 bg-transparent text-white/48 hover:border-[#92B2C8]/50 hover:text-white"
                 }
               `}
             >
@@ -148,55 +275,40 @@ export default function ModulosQueroVitora() {
           ))}
         </div>
 
-        <div className="mt-8 grid overflow-hidden rounded-[28px] border border-white/10 bg-[#0A1820] lg:grid-cols-[0.78fr_1.22fr]">
-          <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
-            <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#79C5E4]">
-              {String(ativo + 1).padStart(2, "0")}
-            </p>
+        {/* MÓDULO ATIVO */}
+        <div className="relative mt-8 border-y border-white/10">
+          <div className="pointer-events-none absolute left-[48%] top-1/2 hidden h-[220px] w-[220px] -translate-y-1/2 rounded-full bg-[#1B456A]/[0.06] blur-[100px] lg:block" />
 
-            <h3 className="mt-4 text-[28px] font-extrabold leading-[1.08] sm:text-[32px]">
-              {modulo.titulo}
-            </h3>
+          <div className="relative z-10 grid gap-10 py-11 lg:grid-cols-[0.68fr_1.32fr] lg:items-center lg:py-12">
+            <div>
+              <span className="text-[16px] font-extrabold leading-none text-[#92B2C8]">
+                {String(ativo + 1).padStart(2, "0")}
+              </span>
 
-            <p className="mt-5 max-w-[520px] text-[13px] leading-[1.75] text-white/50 sm:text-[14px]">
-              {modulo.texto}
-            </p>
-
-            <div className="mt-8 space-y-3">
-              {modulo.recursos.map((recurso) => (
-                <div key={recurso} className="flex items-center gap-3">
-                  <span className="h-[5px] w-[5px] rounded-full bg-[#79C5E4]" />
-
-                  <span className="text-[12px] font-medium text-white/70">
-                    {recurso}
-                  </span>
-                </div>
-              ))}
+              <h3 className="mt-3 max-w-[380px] text-[30px] font-extrabold leading-[1.05] sm:text-[34px]">
+                {modulo.titulo}
+              </h3>
             </div>
-          </div>
 
-          {/* Estrutura pronta para receber screenshot */}
-          <div className="relative min-h-[380px] overflow-hidden border-t border-white/10 bg-[#08151C] lg:min-h-[520px] lg:border-l lg:border-t-0">
-            <div
-              className="absolute inset-0 opacity-70"
-              style={{
-                backgroundImage: `
-                  linear-gradient(rgba(95, 190, 226, 0.045) 1px, transparent 1px),
-                  linear-gradient(90deg, rgba(95, 190, 226, 0.045) 1px, transparent 1px)
-                `,
-                backgroundSize: "38px 38px",
-              }}
-            />
+            <div>
+              <p className="max-w-[760px] text-[14px] leading-[1.8] text-white/60">
+                {modulo.texto}
+              </p>
 
-            <div className="absolute left-[12%] top-[13%] h-[74%] w-[76%] rotate-[2deg] rounded-[20px] border border-[#6DC4E5]/15 bg-[#0D2632]/60 shadow-[0_30px_80px_rgba(0,0,0,0.3)]" />
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {modulo.recursos.map((recurso) => (
+                  <div key={recurso} className="border-t border-white/12 pt-4">
+                    <div className="flex items-start gap-3">
+                      <span className="mt-[6px] h-[4px] w-[4px] shrink-0 rounded-full bg-[#92B2C8]" />
 
-            <div className="absolute left-[18%] top-[20%] h-[62%] w-[67%] -rotate-[1deg] rounded-[18px] border border-[#6DC4E5]/20 bg-gradient-to-br from-[#153B4D]/65 to-[#08141B]/85" />
-
-            <div className="absolute bottom-[13%] left-[10%] h-px w-[70%] rotate-[-10deg] bg-gradient-to-r from-transparent via-[#6DC4E5]/45 to-transparent" />
-
-            <div className="absolute right-[16%] top-[24%] h-2 w-2 rounded-full bg-[#75DCEB] shadow-[0_0_20px_rgba(117,220,235,0.8)]" />
-
-            <div className="absolute bottom-[20%] left-[22%] h-2 w-2 rounded-full bg-[#5DAFDB] shadow-[0_0_18px_rgba(93,175,219,0.7)]" />
+                      <span className="text-[12px] font-medium leading-[1.55] text-white/70">
+                        {recurso}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

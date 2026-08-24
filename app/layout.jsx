@@ -4,12 +4,11 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata = {
-  title: "Vit — sua reuniao vira ata | Vitora",
-  description:
-    "Envie o audio de uma reuniao e receba a ata pronta, com participantes, assuntos e encaminhamentos. Uma amostra do Vitora no 9o Congresso Nacional do CONFIES.",
+  metadataBase: new URL("https://lp.vitora.com.br"),
 
   icons: {
     icon: [

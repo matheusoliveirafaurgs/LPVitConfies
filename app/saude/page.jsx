@@ -1,11 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Montserrat } from "next/font/google";
+
 import FormularioSaude from "@/components/saude/FormularioSaude";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
 export const metadata = {
@@ -19,11 +21,11 @@ export const metadata = {
   },
 
   robots: {
-    index: false,
-    follow: false,
+    index: true,
+    follow: true,
     googleBot: {
-      index: false,
-      follow: false,
+      index: true,
+      follow: true,
       "max-image-preview": "large",
       "max-snippet": -1,
       "max-video-preview": -1,
@@ -38,6 +40,12 @@ export const metadata = {
     title: "Gestão da Qualidade para Saúde | Vitora",
     description:
       "Mais controle, rastreabilidade e segurança para a gestão da qualidade na área da saúde.",
+    images: [
+      {
+        url: "/saude/hero-saude.jpg",
+        alt: "Vitora - Gestão da Qualidade para a Área da Saúde",
+      },
+    ],
   },
 
   twitter: {
@@ -45,6 +53,7 @@ export const metadata = {
     title: "Gestão da Qualidade para Saúde | Vitora",
     description:
       "Mais controle, rastreabilidade e segurança para a gestão da qualidade na área da saúde.",
+    images: ["/saude/hero-saude.jpg"],
   },
 
   icons: {
@@ -65,18 +74,43 @@ export const metadata = {
 
 const saudeStructuredData = {
   "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Vitora para Saúde",
-  applicationCategory: "BusinessApplication",
-  operatingSystem: "Web",
-  description:
-    "Software de gestão da qualidade para organizações da área da saúde, com recursos para documentos, auditorias, indicadores, incidentes, fornecedores e conformidade.",
-  provider: {
-    "@type": "Organization",
-    name: "Vitora",
-    url: "https://www.vitora.com.br",
-  },
-  url: "https://lp.vitora.com.br/saude",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.vitora.com.br/#organization",
+      name: "Vitora",
+      url: "https://www.vitora.com.br",
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://lp.vitora.com.br/saude/#software",
+      name: "Vitora para Saúde",
+      applicationCategory: "BusinessApplication",
+      operatingSystem: "Web",
+      url: "https://lp.vitora.com.br/saude",
+      description:
+        "Software de gestão da qualidade para organizações da área da saúde, com recursos para documentos, auditorias, indicadores, incidentes, fornecedores e conformidade.",
+      provider: {
+        "@id": "https://www.vitora.com.br/#organization",
+      },
+      audience: {
+        "@type": "Audience",
+        audienceType:
+          "Hospitais, distribuidoras de medicamentos, indústrias farmacêuticas e empresas de produtos e equipamentos médicos",
+      },
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://lp.vitora.com.br/saude/#webpage",
+      url: "https://lp.vitora.com.br/saude",
+      name: "Gestão da Qualidade para Saúde | Vitora",
+      description:
+        "Software de gestão da qualidade para organizações da área da saúde.",
+      about: {
+        "@id": "https://lp.vitora.com.br/saude/#software",
+      },
+    },
+  ],
 };
 
 const SEGMENTOS = [
@@ -100,16 +134,6 @@ const SEGMENTOS = [
     texto:
       "Fortaleça conformidade regulatória, rastreabilidade e excelência operacional.",
   },
-];
-
-const CONFORMIDADE = [
-  "Qualificação de fornecedores",
-  "Análise de causa-raiz",
-  "Acreditação hospitalar",
-  "Rastreabilidade total",
-  "ISO 9001",
-  "Conformidade ANVISA",
-  "Auditorias internas",
 ];
 
 function IconeInstagram(props) {
@@ -160,18 +184,14 @@ export default function SaudePage() {
           id="contato"
           className="relative overflow-hidden bg-[#071A24] text-white"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-[#071A24]/95 via-[#071A24]/65 to-[#071A24]/45 sm:from-[#071A24]/95 sm:via-[#071A24]/40 sm:to-[#071A24]/78">
+          <div className="absolute inset-0">
             <Image
               src="/saude/hero-saude.jpg"
               alt="Profissional da área da saúde em ambiente hospitalar"
               fill
               priority
               sizes="100vw"
-              className="
-    object-cover
-    object-[58%_center]
-    sm:object-center
-  "
+              className="object-cover object-[58%_center] sm:object-center"
             />
 
             <div className="absolute inset-0 bg-gradient-to-r from-[#071A24]/95 via-[#071A24]/40 to-[#071A24]/78" />
@@ -179,28 +199,28 @@ export default function SaudePage() {
 
           <div
             className="
-  relative
-  mx-auto
-  grid
-  w-full
-  max-w-[1440px]
-  gap-8
-  px-6
-  pb-10
-  pt-8
+              relative
+              mx-auto
+              grid
+              w-full
+              max-w-[1440px]
+              gap-8
+              px-6
+              pb-10
+              pt-8
 
-  sm:px-8
-  sm:pb-12
+              sm:px-8
+              sm:pb-12
 
-  lg:min-h-[680px]
-  lg:grid-cols-[1.05fr_0.78fr]
-  lg:items-center
-  lg:gap-24
-  lg:px-10
-  lg:py-14
+              lg:min-h-[680px]
+              lg:grid-cols-[1.05fr_0.78fr]
+              lg:items-center
+              lg:gap-24
+              lg:px-10
+              lg:py-14
 
-  xl:px-6
-"
+              xl:px-6
+            "
           >
             <div className="lg:-ml-8 lg:-mt-4 xl:-ml-16">
               <Image
@@ -216,9 +236,7 @@ export default function SaudePage() {
                 Gestão da Qualidade para a Área da Saúde
               </p>
 
-              <h1
-                className="mt-5 max-w-[560px] text-[31px] font-extrabold uppercase leading-[1.03] tracking-[-0.02em] sm:text-[40px] lg:text-[56px]"
-              >
+              <h1 className="mt-5 max-w-[560px] text-[31px] font-extrabold uppercase leading-[1.03] tracking-[-0.02em] sm:text-[40px] lg:text-[56px]">
                 Na saúde,
                 <br />
                 não há margem
@@ -233,7 +251,7 @@ export default function SaudePage() {
               </p>
             </div>
 
-            <div className="w-full max-w-[540px] rounded-[20px] bg-white p-5 text-[#161614] shadow-2xl sm:p-7 lg:-translate-y-4 lg:translate-x-10 lg:rounded[24px] lg:p-9 ">
+            <div className="w-full max-w-[540px] rounded-[20px] bg-white p-5 text-[#161614] shadow-2xl sm:p-7 lg:-translate-y-4 lg:translate-x-10 lg:rounded-[24px] lg:p-9">
               <p className="text-[12px] font-semibold uppercase tracking-[0.14em] text-[#4EAED4]">
                 Fale com um especialista
               </p>

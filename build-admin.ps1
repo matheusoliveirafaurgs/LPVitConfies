@@ -75,7 +75,9 @@ if (!(Test-Path $BuildRoot)) {
 
 Write-Host "[3/9] Limpando artefatos temporarios..."
 
-Remove-Item "$ProjectRoot\.next" `
+$NextFolder = Join-Path $ProjectRoot ".next"
+
+Remove-Item $NextFolder `
     -Recurse `
     -Force `
     -ErrorAction SilentlyContinue
